@@ -7,6 +7,10 @@ var server = express();
 
 var port = 4000;
 
+// serve folders that index.html needs
+// public is the webpack output folder
+server.use(express.static('public'));
+
 server.get("/", function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
