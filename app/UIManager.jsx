@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from './Header';
+import List from './List';
+
 import data from './data';
 
 console.log(data);
@@ -9,7 +11,7 @@ class UIManager extends React.Component {
         return(
             <div>
                 <Header />
-                <div>List goes here...</div>
+                <List />
             </div>
         );
     }
