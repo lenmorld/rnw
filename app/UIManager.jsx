@@ -7,11 +7,19 @@ import data from './data';
 console.log(data);
 
 class UIManager extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            list: data.list
+        }
+    }
+
     render() {
         return(
             <div>
                 <Header />
-                <List />
+                <List list={this.state.list}/>
             </div>
         );
     }
