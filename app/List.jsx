@@ -8,7 +8,16 @@ class List extends React.Component {
 
         return(
             <div>
-                <Item />
+                {
+                    list.map(function(item) {
+                        return (
+                            <Item
+                                item={item}
+                                key={item.id}
+                             />
+                        );
+                    })
+                }
             </div>
         );
     }
