@@ -6,21 +6,15 @@ class List extends React.Component {
         var list = this.props.list;
         console.log(list);
 
-
-        class List extends React.Component {
-            render() {
-                var list = this.props.list;
-                console.log(list);
-        
-                return(
-                    <div className="items_grid">
-                        {
-                            list.map(function(item) {
+        return (
+            <div className="items_grid">
+                {
+                    list.map(function (item) {
                         return (
                             <Item
                                 item={item}
                                 key={item.id}
-                             />
+                            />
                         );
                     })
                 }
