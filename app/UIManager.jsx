@@ -27,7 +27,18 @@ class UIManager extends React.Component {
     }
 
     render() {
-        console.log("this.state.search_term", this.state.search_term);
+        debugger;        
+        var list = this.state.list;
+        var search_term = this.state.search_term;
+        var filtered_list;
+
+        if (!search_term) {
+            filtered_list = list;
+        } else {
+            filtered_list = list.filter(function (item) {
+                return item.title.toLowerCase().includes(search_term.toLowerCase());
+            });
+        }
 
         return(
             <div>
@@ -41,7 +52,7 @@ class UIManager extends React.Component {
                                        } 
                                     } />
                 </div>
-                <List list={this.state.list}/>
+                <List list={filtered_list}/>
             </div>
         );
     }
