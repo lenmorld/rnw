@@ -6,10 +6,16 @@ class List extends React.Component {
         var list = this.props.list;
         console.log(list);
 
-        return(
-            <div>
-                {
-                    list.map(function(item) {
+
+        class List extends React.Component {
+            render() {
+                var list = this.props.list;
+                console.log(list);
+        
+                return(
+                    <div className="items_grid">
+                        {
+                            list.map(function(item) {
                         return (
                             <Item
                                 item={item}
