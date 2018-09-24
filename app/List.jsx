@@ -4,7 +4,7 @@ import Item from './Item';
 class List extends React.Component {
     render() {
         var list = this.props.list;
-        console.log(list);
+        // console.log(list);
 
         return(
             <div className="items_grid">

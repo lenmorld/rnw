@@ -12,16 +12,23 @@ class UIManager extends React.Component {
         super();
         // debugger;
         this.state = {
+            search_term: '',
             list: data.list
         }
     }
 
     searchList(event) {
-        var search_term = event.target.value;
-        console.log(search_term);
+        var current_search_term = event.target.value;
+        // console.log(current_search_term);
+
+        this.setState({
+            search_term: current_search_term
+        });
     }
 
     render() {
+        console.log("this.state.search_term", this.state.search_term);
+
         return(
             <div>
                 <Header />
