@@ -10,6 +10,7 @@ class UIManager extends React.Component {
 
     constructor() {
         super();
+        // debugger;
         this.state = {
             list: data.list
         }
@@ -27,7 +28,11 @@ class UIManager extends React.Component {
                 <div className="options">
                     <input type="text" 
                            placeholder="Filter..." 
-                           onChange={ function(event){this.searchList(event)} } />
+                           onChange={ (event) => {
+                                        // debugger;
+                                        this.searchList(event);
+                                       } 
+                                    } />
                 </div>
                 <List list={this.state.list}/>
             </div>
