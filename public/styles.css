@@ -42,11 +42,11 @@ body {
     display: flex;
   } */
   
-  /* .list { */
+  /*  { */
     /* float: left; */
   /* } */
   
-  .list .controls{
+   .options{
     display: flex;
     justify-content: center;
     margin: 20px 0;
@@ -54,7 +54,7 @@ body {
     flex-wrap: wrap;
   }
   
-  .list .controls input {
+   .options input {
     background-color: black;
     color: white;
     /* margin: 20px 0; */
@@ -67,7 +67,7 @@ body {
     min-width: 240px;
   }
   
-  .list .controls span.add, .list .controls span.add_spotify {
+   .options span.add,  .options span.add_spotify {
     color: limegreen;  
     text-align: center;
     font-size: 20px;
@@ -75,7 +75,7 @@ body {
     margin-right: 20px;
   }
   
-  .list .controls span.add:hover, .list .controls span.add_spotify:hover {
+   .options span.add:hover,  .options span.add_spotify:hover {
     color: white;
   }
   
@@ -346,7 +346,7 @@ body {
       width: 75%;
     }
   
-    .list .controls input {
+     .options input {
       margin: 0px 10px;
     }
   
@@ -362,7 +362,7 @@ body {
       grid-template-columns: auto;
     }
   
-    .list .controls input {
+     .options input {
       margin: 0px 10px;
     }
   
