@@ -19,7 +19,7 @@ class UIManager extends React.Component {
 
     searchList(event) {
         var search_term = event.target.value;
-        // console.log(current_search_term);
+        // console.log(search_term);
 
         this.setState({
             search_term: search_term
