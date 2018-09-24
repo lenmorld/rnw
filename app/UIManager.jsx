@@ -18,11 +18,11 @@ class UIManager extends React.Component {
     }
 
     searchList(event) {
-        var current_search_term = event.target.value;
+        var search_term = event.target.value;
         // console.log(current_search_term);
 
         this.setState({
-            search_term: current_search_term
+            search_term: search_term
         });
     }
 
