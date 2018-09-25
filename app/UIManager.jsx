@@ -29,7 +29,16 @@ class UIManager extends React.Component {
 
     // data API - CRUD methods
     createItem(item) {
-        console.log("[UIManager] Create ", item);
+        // console.log("[UIManager] Create ", item);
+
+        // copy by value, not by reference, using ES6 spread operator
+        var current_list_items = [...this.state.list];
+        // add new item
+        current_list_items.push(item);
+        // apply change to state
+        this.setState({
+            list: current_list_items
+        })
     }
 
     render() {
