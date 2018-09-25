@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import List from './List';
+import ItemForm from './ItemForm';
 
 import data from './data';
 
@@ -53,6 +54,7 @@ class UIManager extends React.Component {
                                     } />
                 </div>
                 <List list={filtered_list}/>
+                <ItemForm />
             </div>
         );
     }
