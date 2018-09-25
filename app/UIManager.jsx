@@ -33,7 +33,7 @@ class UIManager extends React.Component {
     }
 
     render() {
-        debugger;        
+        // debugger;        
         var list = this.state.list;
         var search_term = this.state.search_term;
         var filtered_list;
