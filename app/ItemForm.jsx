@@ -15,15 +15,15 @@ class ItemForm extends React.Component {
     }
 
     hideForm() {
-        
+        console.log("hide form");
     }
 
     onSubmitForm(event) {
-
+        console.log("form submitted");
     }
 
     onChangeInput(event) {
-
+        console.log("input changed");
     }
 
     render() {
