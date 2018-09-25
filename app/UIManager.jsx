@@ -27,6 +27,11 @@ class UIManager extends React.Component {
         });
     }
 
+    // data API - CRUD methods
+    createItem(item) {
+        console.log("[UIManager] Create ", item);
+    }
+
     render() {
         debugger;        
         var list = this.state.list;
@@ -54,7 +59,8 @@ class UIManager extends React.Component {
                                     } />
                 </div>
                 <List list={filtered_list}/>
-                <ItemForm />
+                <ItemForm 
+                    createItem={ (item) => this.createItem(item) }/>
             </div>
         );
     }

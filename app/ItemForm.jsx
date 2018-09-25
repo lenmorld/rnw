@@ -19,7 +19,24 @@ class ItemForm extends React.Component {
     }
 
     onSubmitForm(event) {
-        console.log("form submitted");
+        // console.log("form submitted");
+
+        // prevent default reloading on HTML forms
+        event.preventDefault();
+        // get Item data from state
+        var item = this.state.fields;
+        // call data API
+        this.props.createItem(item);
+        // empty fields for next round
+        this.setState({
+            fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            }
+        });
+
     }
 
     onChangeInput(event) {
