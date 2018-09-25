@@ -15,7 +15,8 @@ class ItemForm extends React.Component {
     }
 
     hideForm() {
-        console.log("hide form");
+        var modal = document.querySelector('.modal');
+        modal.style.display = "none";
     }
 
     onSubmitForm(event) {
@@ -37,6 +38,8 @@ class ItemForm extends React.Component {
             }
         });
 
+        // optional
+        // this.hideForm();    
     }
 
     onChangeInput(event) {
@@ -55,7 +58,7 @@ class ItemForm extends React.Component {
     render() {
         // debugger;
         return (
-            <div>
+            <div className="modal">
                 <form>
                     <div className="close_form">
                         <span onClick={this.hideForm}>[🗙]</span>

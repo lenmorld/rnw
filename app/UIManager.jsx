@@ -41,6 +41,11 @@ class UIManager extends React.Component {
         })
     }
 
+    showForm() {
+        var modal = document.querySelector('.modal');
+        modal.style.display = "block";
+    }
+
     render() {
         debugger;        
         var list = this.state.list;
@@ -66,6 +71,7 @@ class UIManager extends React.Component {
                                         this.searchList(event);
                                        } 
                                     } />
+                    <span className="add" onClick={this.showForm}>[➕]</span>
                 </div>
                 <List list={filtered_list}/>
                 <ItemForm 
