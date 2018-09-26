@@ -41,13 +41,21 @@ class UIManager extends React.Component {
         })
     }
 
+    deleteItem(item_id) {
+        console.log("[UIManager]: delete ", item_id );
+    }
+
+    editItem(item_id) {
+        console.log("[UIManager]: edit ", item_id );
+    }
+
     showForm() {
         var modal = document.querySelector('.modal');
         modal.style.display = "block";
     }
 
     render() {
-        debugger;        
+        // debugger;        
         var list = this.state.list;
         var search_term = this.state.search_term;
         var filtered_list;
@@ -73,7 +81,9 @@ class UIManager extends React.Component {
                                     } />
                     <span className="add" onClick={this.showForm}>[➕]</span>
                 </div>
-                <List list={filtered_list}/>
+                <List list={filtered_list} 
+                      deleteItem={this.deleteItem}
+                      editItem={this.editItem} />
                 <ItemForm 
                     createItem={ (item) => this.createItem(item) }/>
             </div>

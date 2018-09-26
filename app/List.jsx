@@ -9,11 +9,13 @@ class List extends React.Component {
         return(
             <div className="items_grid">
                 {
-                    list.map(function(item) {
+                    list.map((item) => {
                         return (
                             <Item
                                 item={item}
                                 key={item.id}
+                                deleteItem={this.props.deleteItem}
+                                editItem={this.props.editItem}
                              />
                         );
                     })
