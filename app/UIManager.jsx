@@ -82,8 +82,8 @@ class UIManager extends React.Component {
                     <span className="add" onClick={this.showForm}>[➕]</span>
                 </div>
                 <List list={filtered_list} 
-                      deleteItem={this.deleteItem}
-                      editItem={this.editItem} />
+                      deleteItem={(item_id) => this.deleteItem(item_id) }
+                      editItem={(item_id) => this.editItem(item_id) } />
                 <ItemForm 
                     createItem={ (item) => this.createItem(item) }/>
             </div>
