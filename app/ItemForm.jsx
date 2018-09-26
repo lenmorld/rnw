@@ -27,7 +27,12 @@ class ItemForm extends React.Component {
         // get Item data from state
         var item = this.state.fields;
         // call data API
-        this.props.createItem(item);
+        if (this.props.mode === "CREATE") {
+            this.props.createItem(item);
+        } else if (this.props.mode === "EDIT") {
+            this.props.updateItem(item);
+        }
+
         // empty fields for next round
         this.setState({
             fields: {
