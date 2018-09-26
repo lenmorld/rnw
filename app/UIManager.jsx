@@ -14,7 +14,13 @@ class UIManager extends React.Component {
         // debugger;
         this.state = {
             search_term: '',
-            list: data.list
+            list: data.list,
+            form_fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            }
         }
     }
 
