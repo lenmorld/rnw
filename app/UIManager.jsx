@@ -42,7 +42,7 @@ class UIManager extends React.Component {
     }
 
     deleteItem(item_id) {
-        console.log("[UIManager]: delete ", item_id );
+        // console.log("[UIManager]: delete ", item_id );
 
         // copy by value, not by reference, using ES6 spread operator
         var current_list_items = [...this.state.list];
@@ -53,7 +53,7 @@ class UIManager extends React.Component {
         // apply change to state
         this.setState({
             list: filtered_list
-        })
+        });
     }
 
     editItem(item_id) {
