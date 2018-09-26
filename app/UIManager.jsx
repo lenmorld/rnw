@@ -60,6 +60,22 @@ class UIManager extends React.Component {
 
     editItem(item_id) {
         console.log("[UIManager]: edit ", item_id );
+         // copy by value, not by reference, using ES6 spread operator
+        var current_list_items = [...this.state.list];
+        // filter list copy, by excluding item to delete
+        var filtered_list = current_list_items.filter(function(item) {
+            return item.id === item_id;
+        });
+        
+         // filter returns an array, but there should only be one matching item with given ID
+        var item_to_edit = filtered_list[0];
+         // set mode of ItemForm
+        this.setState({
+            form_mode: 'EDIT',
+            form_item: item_to_edit
+        })
+         // show ItemForm
+        this.showForm();
     }
 
     saveUpdatedItem(item) {
