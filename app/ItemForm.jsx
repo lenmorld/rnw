@@ -63,7 +63,14 @@ class ItemForm extends React.Component {
                     <div className="close_form">
                         <span onClick={this.hideForm}>[🗙]</span>
                     </div>
-                    <h3>Create a new item</h3>
+                    <h3>
+                        {
+                            this.props.mode === "CREATE" ? "Create a new item" : ''
+                        }
+                        {
+                            this.props.mode === "EDIT" ? "Edit an item" : ''
+                        }
+                    </h3>
                     <p>
                         <label>ID:</label>
                         <input name="id"
@@ -91,7 +98,7 @@ class ItemForm extends React.Component {
 
                     <div className="create">
                         <button onClick={(event) => this.onSubmitForm(event) }>
-                            CREATE
+                            {this.props.mode}
                         </button>
                     </div>
                 </form>

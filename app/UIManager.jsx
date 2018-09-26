@@ -14,7 +14,9 @@ class UIManager extends React.Component {
         // debugger;
         this.state = {
             search_term: '',
-            list: data.list
+            list: data.list,
+            form_mode: 'CREATE',
+            form_item: null
         }
     }
 
@@ -60,6 +62,10 @@ class UIManager extends React.Component {
         console.log("[UIManager]: edit ", item_id );
     }
 
+    saveUpdatedItem(item) {
+        console.log("[UIManager]: save updated item ", item_id );
+    }
+
     showForm() {
         var modal = document.querySelector('.modal');
         modal.style.display = "block";
@@ -96,7 +102,10 @@ class UIManager extends React.Component {
                       deleteItem={(item_id) => this.deleteItem(item_id) }
                       editItem={(item_id) => this.editItem(item_id) } />
                 <ItemForm 
-                    createItem={ (item) => this.createItem(item) }/>
+                    createItem={ (item) => this.createItem(item) }
+                    updateItem={ (item) => this.saveUpdatedItem(item) }
+                    mode={this.state.form_mode}
+                    item={this.state.form_item} />
             </div>
         );
     }
