@@ -43,6 +43,17 @@ class UIManager extends React.Component {
 
     deleteItem(item_id) {
         console.log("[UIManager]: delete ", item_id );
+
+        // copy by value, not by reference, using ES6 spread operator
+        var current_list_items = [...this.state.list];
+        // filter list copy, by excluding item to delete
+        var filtered_list = current_list_items.filter(function(item) {
+            return item.id !== item_id;
+        });
+        // apply change to state
+        this.setState({
+            list: filtered_list
+        })
     }
 
     editItem(item_id) {
@@ -82,8 +93,8 @@ class UIManager extends React.Component {
                     <span className="add" onClick={this.showForm}>[➕]</span>
                 </div>
                 <List list={filtered_list} 
-                      deleteItem={this.deleteItem}
-                      editItem={this.editItem} />
+                      deleteItem={(item_id) => this.deleteItem(item_id) }
+                      editItem={(item_id) => this.editItem(item_id) } />
                 <ItemForm 
                     createItem={ (item) => this.createItem(item) }/>
             </div>
