@@ -1,20 +1,14 @@
 import React from 'react';
 
 class ItemForm extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            fields: {
-                id: '',
-                title: '',
-                artist: '',
-                album: ''
-            }
-        };
-    }
-
     render() {
+
+        var item = this.props.item;
+
+        if (!item) {
+            return '';
+        }
+
         return (
             <div>
                 <form>
@@ -25,22 +19,22 @@ class ItemForm extends React.Component {
                     <p>
                         <label>ID:</label>
                         <input name="id" 
-                               value={this.state.fields.id} />
+                               value={item.id} />
                     </p>
                     <p>
                         <label>Title:</label>
                         <input name="title" 
-                               value={this.state.fields.title} />
+                               value={item.title} />
                     </p>
                     <p>
                         <label>Artist:</label>
                         <input name="artist" 
-                               value={this.state.fields.artist} />
+                               value={item.artist} />
                     </p>
                     <p>
                         <label>Album:</label>
                         <input name="album" 
-                               value={this.state.fields.album} />
+                               value={item.album} />
                     </p>
 
                     <div className="create">
