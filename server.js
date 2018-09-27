@@ -31,7 +31,7 @@ function runServer(json_data) {
 
     // fetch one
     server.get("/list/:id", function(req, res) {
-        console.log(req.params);
+        console.log(`GET Item ID ${req.params.id}`);
 
         var list = json_data["list"];
         var matches = list.filter(function(item) {
