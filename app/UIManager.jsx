@@ -37,7 +37,7 @@ class UIManager extends React.Component {
         // console.log("input changed");
 
         // copy values, not reference
-        var current_list_fields = Object.assign({}, this.state.fields);     
+        var current_list_fields = Object.assign({}, this.state.form_fields);     
         // e.g. current_list_fields['artist'] = 'Artist1'
         current_list_fields[event.target.name] = event.target.value;
         // apply new value to state
