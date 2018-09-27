@@ -24,6 +24,28 @@ function runServer(json_data) {
         res.sendFile(__dirname + '/index.html');
     });
 
+    // fetch all
+    server.get("/list", function(req, res) {
+        res.send(json_data['list']);
+    });
+
+    // fetch one
+    server.get("/list/:id", function(req, res) {
+        console.log(req.params);
+
+        var list = json_data["list"];
+        var matches = list.filter(function(item) {
+            return item.id === req.params.id;
+        });
+
+        if (matches && matches.length) {
+            res.send(matches[0]);     // there should only be one matching
+        } else {
+            res.status(404);    // Not Found
+            res.send( { "error": `Item with ID ${req.params.id} not found` });
+        }
+    });
+
     server.get("/json", function(req, res) {
         res.send(JSON.stringify({ name: "Lenny"}));
     });
