@@ -33,6 +33,10 @@ class UIManager extends React.Component {
         });
     }
 
+    onChangeFormInput(event) {
+        console.log("input changed");
+    }
+
     render() {
         // debugger;        
         var list = this.state.list;
@@ -60,7 +64,8 @@ class UIManager extends React.Component {
                                     } />
                 </div>
                 <List list={filtered_list}/>
-                <ItemForm item={this.state.form_fields }/>
+                <ItemForm item={this.state.form_fields }
+                          onChangeFormInput={(event) => this.onChangeFormInput(event) } />
             </div>
         );
     }
