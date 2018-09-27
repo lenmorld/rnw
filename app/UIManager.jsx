@@ -51,6 +51,27 @@ class UIManager extends React.Component {
         });
     }
 
+    deleteItem(item_id) {
+        // console.log("[UIManager]: delete ", item_id );
+
+        // copy by value, not by reference, using ES6 spread operator
+        var current_list_items = [...this.state.list];
+        // filter list copy, by excluding item to delete
+        var filtered_list = current_list_items.filter(function(item) {
+            return item.id !== item_id;
+        });
+        // apply change to state
+        this.setState({
+            list: filtered_list
+        });
+    }
+
+    editItem(item_id) {
+        console.log("[UIManager]: edit ", item_id );
+    }
+
+    // end of CRUD methods
+
     searchList(event) {
         var search_term = event.target.value;
         // console.log(search_term);
@@ -71,25 +92,6 @@ class UIManager extends React.Component {
         this.setState({
             form_fields: current_list_fields
         });
-    }
-
-    deleteItem(item_id) {
-        // console.log("[UIManager]: delete ", item_id );
-
-        // copy by value, not by reference, using ES6 spread operator
-        var current_list_items = [...this.state.list];
-        // filter list copy, by excluding item to delete
-        var filtered_list = current_list_items.filter(function(item) {
-            return item.id !== item_id;
-        });
-        // apply change to state
-        this.setState({
-            list: filtered_list
-        });
-    }
-
-    editItem(item_id) {
-        console.log("[UIManager]: edit ", item_id );
     }
 
     showForm() {
