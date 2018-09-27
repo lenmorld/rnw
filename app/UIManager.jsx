@@ -15,32 +15,41 @@ class UIManager extends React.Component {
         this.state = {
             search_term: '',
             list: data.list,
-            form_mode: 'CREATE',
-            form_item: null
+            form_fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            },
+            form_mode: 'CREATE'
         }
     }
 
-    searchList(event) {
-        var search_term = event.target.value;
-        // console.log(search_term);
-
-        this.setState({
-            search_term: search_term
-        });
-    }
-
     // data API - CRUD methods
-    createItem(item) {
-        // console.log("[UIManager] Create ", item);
+    createItem() {
+        // debugger;
+        console.log("[UIManager] Create ");
 
-        // copy by value, not by reference, using ES6 spread operator
+        // get Item data from state
+        var item = this.state.form_fields;
+        // copy list values, not reference, using ES6 spread operator
         var current_list_items = [...this.state.list];
         // add new item
         current_list_items.push(item);
         // apply change to state
         this.setState({
             list: current_list_items
-        })
+        });
+
+        // empty fields for next round
+        this.setState({
+            form_fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            }
+        });
     }
 
     deleteItem(item_id) {
@@ -72,32 +81,39 @@ class UIManager extends React.Component {
          // set mode of ItemForm
         this.setState({
             form_mode: 'EDIT',
-            form_item: item_to_edit
+            form_fields: item_to_edit
         })
          // show ItemForm
         this.showForm();
     }
 
-    saveUpdatedItem(item) {
-        console.log("[UIManager]: save updated item ", item_id );
+    // end of CRUD methods
+
+    searchList(event) {
+        var search_term = event.target.value;
+        // console.log(search_term);
+
+        this.setState({
+            search_term: search_term
+        });
+    }
+
+    onChangeFormInput(event) {
+        // console.log("input changed");
+
+        // copy values, not reference
+        var current_list_fields = Object.assign({}, this.state.form_fields);     
+        // e.g. current_list_fields['artist'] = 'Artist1'
+        current_list_fields[event.target.name] = event.target.value;
+        // apply new value to state
+        this.setState({
+            form_fields: current_list_fields
+        });
     }
 
     showForm() {
         var modal = document.querySelector('.modal');
         modal.style.display = "block";
-    }
-
-    onAddItem() {
-        this.setState({
-            form_mode: 'CREATE',
-            form_item: {
-                id: '',
-                title: '',
-                artist: '',
-                album: ''
-            }
-        });
-        this.showForm();
     }
 
     render() {
@@ -125,16 +141,15 @@ class UIManager extends React.Component {
                                         this.searchList(event);
                                        } 
                                     } />
-                    <span className="add" onClick={() => this.onAddItem()}>[➕]</span>
+                    <span className="add" onClick={this.showForm}>[➕]</span>
                 </div>
                 <List list={filtered_list} 
                       deleteItem={(item_id) => this.deleteItem(item_id) }
                       editItem={(item_id) => this.editItem(item_id) } />
-                <ItemForm 
-                    createItem={ (item) => this.createItem(item) }
-                    updateItem={ (item) => this.saveUpdatedItem(item) }
-                    mode={this.state.form_mode}
-                    item={this.state.form_item} />
+                <ItemForm item={this.state.form_fields}
+                          onChangeFormInput={(event) => this.onChangeFormInput(event) } 
+                          createItem={() => this.createItem()}
+                          mode={this.state.form_mode} />
             </div>
         );
     }
