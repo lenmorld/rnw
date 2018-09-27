@@ -30,25 +30,25 @@ class ItemForm extends React.Component {
                         <label>ID:</label>
                         <input name="id" 
                                onChange={(event) => this.props.onChangeFormInput(event)}  
-                               value={item.id} />
+                               defaultValue={item.id} />
                     </p>
                     <p>
                         <label>Title:</label>
                         <input name="title" 
                                onChange={(event) => this.props.onChangeFormInput(event)}
-                               value={item.title} />
+                               defaultValue={item.title} />
                     </p>
                     <p>
                         <label>Artist:</label>
                         <input name="artist" 
                                onChange={(event) => this.props.onChangeFormInput(event)}
-                               value={item.artist} />
+                               defaultValue={item.artist} />
                     </p>
                     <p>
                         <label>Album:</label>
                         <input name="album" 
                                onChange={(event) => this.props.onChangeFormInput(event)}
-                               value={item.album} />
+                               defaultValue={item.album} />
                     </p>
 
                     <div className="create">
