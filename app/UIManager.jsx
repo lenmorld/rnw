@@ -81,7 +81,7 @@ class UIManager extends React.Component {
          // set mode of ItemForm
         this.setState({
             form_mode: 'EDIT',
-            form_item: item_to_edit
+            form_fields: item_to_edit
         })
          // show ItemForm
         this.showForm();
