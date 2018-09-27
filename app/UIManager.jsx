@@ -51,6 +51,16 @@ class UIManager extends React.Component {
         });
     }
 
+    deleteItem(item_id) {
+        console.log("[UIManager]: delete ", item_id );
+    }
+
+    editItem(item_id) {
+        console.log("[UIManager]: edit ", item_id );
+    }
+
+    // end of CRUD methods
+
     searchList(event) {
         var search_term = event.target.value;
         // console.log(search_term);
@@ -71,14 +81,6 @@ class UIManager extends React.Component {
         this.setState({
             form_fields: current_list_fields
         });
-    }
-
-    deleteItem(item_id) {
-        console.log("[UIManager]: delete ", item_id );
-    }
-
-    editItem(item_id) {
-        console.log("[UIManager]: edit ", item_id );
     }
 
     showForm() {
