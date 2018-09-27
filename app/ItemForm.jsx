@@ -19,22 +19,22 @@ class ItemForm extends React.Component {
                     <p>
                         <label>ID:</label>
                         <input name="id" 
-                               value={item.id} />
+                               defaultValue={item.id} />
                     </p>
                     <p>
                         <label>Title:</label>
                         <input name="title" 
-                               value={item.title} />
+                               defaultValue={item.title} />
                     </p>
                     <p>
                         <label>Artist:</label>
                         <input name="artist" 
-                               value={item.artist} />
+                               defaultValue={item.artist} />
                     </p>
                     <p>
                         <label>Album:</label>
                         <input name="album" 
-                               value={item.album} />
+                               defaultValue={item.album} />
                     </p>
 
                     <div className="create">
