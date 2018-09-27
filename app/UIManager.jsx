@@ -14,7 +14,13 @@ class UIManager extends React.Component {
         // debugger;
         this.state = {
             search_term: '',
-            list: data.list
+            list: data.list,
+            form_fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            }
         }
     }
 
@@ -27,9 +33,17 @@ class UIManager extends React.Component {
         });
     }
 
-    // data API - CRUD methods
-    createItem(item) {
-        console.log("[UIManager] Create ", item);
+    onChangeFormInput(event) {
+        // console.log("input changed");
+
+        // copy values, not reference
+        var current_list_fields = Object.assign({}, this.state.fields);     
+        // e.g. current_list_fields['artist'] = 'Artist1'
+        current_list_fields[event.target.name] = event.target.value;
+        // apply new value to state
+        this.setState({
+            form_fields: current_list_fields
+        });
     }
 
     render() {
@@ -59,8 +73,13 @@ class UIManager extends React.Component {
                                     } />
                 </div>
                 <List list={filtered_list}/>
+<<<<<<< HEAD
                 <ItemForm 
                     createItem={ (item) => this.createItem(item) }/>
+=======
+                <ItemForm item={this.state.form_fields }
+                          onChangeFormInput={(event) => this.onChangeFormInput(event) } />
+>>>>>>> c4.7
             </div>
         );
     }
