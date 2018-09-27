@@ -7,6 +7,7 @@ class ItemForm extends React.Component {
     }
 
     onSubmitForm(event) {
+        event.preventDefault();         // prevent form from submitting, so page won't reload
         console.log("form submitted");
     }
 
