@@ -78,11 +78,6 @@ class UIManager extends React.Component {
         modal.style.display = "block";
     }
 
-    showForm() {
-        var modal = document.querySelector('.modal');
-        modal.style.display = "block";
-    }
-
     render() {
         // debugger;        
         var list = this.state.list;
