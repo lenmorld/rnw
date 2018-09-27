@@ -87,6 +87,46 @@ class UIManager extends React.Component {
         this.showForm();
     }
 
+    saveUpdatedItem() {
+        // debugger;
+
+        // get Item data from state
+        var item = this.state.form_fields;
+
+        // copy by value, not by reference, using ES6 spread operator
+        var current_list_items = [...this.state.list];
+        // init new list that will hold new items
+        var updated_list_items = [];
+        /*
+           loop through all items
+           if old_item matches id of the updated one, replace it
+           else keep old_item
+       */
+        current_list_items.forEach(function (old_item) {
+            if (old_item.id === item.id) {
+                updated_list_items.push(item);
+            } else {
+                updated_list_items.push(old_item);
+            }
+        });
+
+        // apply changes to state list
+        // reset form to CREATE
+        this.setState({
+            list: updated_list_items,
+            form_mode: 'CREATE',
+            form_fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            }
+        });
+
+        // hideForm
+        this.hideForm();
+    }
+
     // end of CRUD methods
 
     searchList(event) {
@@ -114,6 +154,11 @@ class UIManager extends React.Component {
     showForm() {
         var modal = document.querySelector('.modal');
         modal.style.display = "block";
+    }
+
+    hideForm() {
+        var modal = document.querySelector('.modal');
+        modal.style.display = "none";
     }
 
     render() {
@@ -149,6 +194,7 @@ class UIManager extends React.Component {
                 <ItemForm item={this.state.form_fields}
                           onChangeFormInput={(event) => this.onChangeFormInput(event) } 
                           createItem={() => this.createItem()}
+                          saveUpdatedItem={item => this.saveUpdatedItem(item)}
                           mode={this.state.form_mode} />
             </div>
         );
