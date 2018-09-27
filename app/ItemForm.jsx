@@ -3,7 +3,8 @@ import React from 'react';
 class ItemForm extends React.Component {
 
     hideForm() {
-        console.log("hide form");
+        var modal = document.querySelector('.modal');
+        modal.style.display = "none";
     }
     
     onSubmitForm(event) {
@@ -21,7 +22,7 @@ class ItemForm extends React.Component {
         }
 
         return (
-            <div>
+            <div className="modal">
                 <form>
                     <div className="close_form">
                         <span onClick={this.hideForm}>[🗙]</span>
