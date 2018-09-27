@@ -59,4 +59,3 @@ class UIManager extends React.Component {
 }
 
 export default UIManager;
-
