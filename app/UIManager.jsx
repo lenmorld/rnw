@@ -20,7 +20,8 @@ class UIManager extends React.Component {
                 title: '',
                 artist: '',
                 album: ''
-            }
+            },
+            form_mode: 'CREATE'
         }
     }
 
@@ -131,7 +132,8 @@ class UIManager extends React.Component {
                       editItem={(item_id) => this.editItem(item_id) } />
                 <ItemForm item={this.state.form_fields}
                           onChangeFormInput={(event) => this.onChangeFormInput(event) } 
-                          createItem={() => this.createItem()} />
+                          createItem={() => this.createItem()}
+                          mode={this.state.form_mode} />
             </div>
         );
     }
