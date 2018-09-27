@@ -11,27 +11,6 @@ class ItemForm extends React.Component {
         console.log("form submitted");
     }
 
-    hideForm() {
-        console.log("hide form");
-    }
-
-    onSubmitForm(event) {
-        console.log("form submitted");
-    }
-
-    onChangeInput(event) {
-        // console.log("input changed");
-        
-        // copy values, not reference
-        var current_list_fields = Object.assign({}, this.state.fields);     
-        // e.g. current_list_fields['artist'] = 'Artist1'
-        current_list_fields[event.target.name] = event.target.value;
-        // apply new value to state
-        this.setState({
-            fields: current_list_fields
-        });
-    }
-
     render() {
 
         var item = this.props.item;
