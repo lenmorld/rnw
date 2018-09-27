@@ -2,18 +2,6 @@ import React from 'react';
 
 class ItemForm extends React.Component {
 
-    // React lifecycle method
-    static getDerivedStateFromProps(props, state) {
-        // debugger;
-        if (props.mode === "EDIT" && state.fields.id === '') {
-            return {
-                fields: props.item
-            };
-        } else {
-            return state;
-        }
-    }
-
     hideForm() {
         var modal = document.querySelector('.modal');
         modal.style.display = "none";
