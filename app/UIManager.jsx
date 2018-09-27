@@ -161,6 +161,19 @@ class UIManager extends React.Component {
         modal.style.display = "none";
     }
 
+    onAddItem() {
+        this.setState({
+            form_mode: 'CREATE',
+            form_fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            }
+        });
+        this.showForm();
+    }
+
     render() {
         // debugger;        
         var list = this.state.list;
@@ -186,7 +199,7 @@ class UIManager extends React.Component {
                                         this.searchList(event);
                                        } 
                                     } />
-                    <span className="add" onClick={this.showForm}>[➕]</span>
+                    <span className="add" onClick={() => this.onAddItem()}>[➕]</span>
                 </div>
                 <List list={filtered_list} 
                       deleteItem={(item_id) => this.deleteItem(item_id) }
