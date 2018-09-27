@@ -60,7 +60,7 @@ class UIManager extends React.Component {
                                     } />
                 </div>
                 <List list={filtered_list}/>
-                <ItemForm item={this.state.form_fields }/>
+                <ItemForm item={this.state.form_fields}/>
             </div>
         );
     }
