@@ -26,7 +26,7 @@ class UIManager extends React.Component {
 
     // data API - CRUD methods
     createItem() {
-        debugger;
+        // debugger;
         console.log("[UIManager] Create ");
 
         // get Item data from state
