@@ -24,6 +24,33 @@ class UIManager extends React.Component {
         }
     }
 
+    // data API - CRUD methods
+    createItem() {
+        debugger;
+        console.log("[UIManager] Create ");
+
+        // get Item data from state
+        var item = this.state.form_fields;
+        // copy list values, not reference, using ES6 spread operator
+        var current_list_items = [...this.state.list];
+        // add new item
+        current_list_items.push(item);
+        // apply change to state
+        this.setState({
+            list: current_list_items
+        });
+
+        // empty fields for next round
+        this.setState({
+            form_fields: {
+                id: '',
+                title: '',
+                artist: '',
+                album: ''
+            }
+        });
+    }
+
     searchList(event) {
         var search_term = event.target.value;
         // console.log(search_term);
@@ -37,7 +64,7 @@ class UIManager extends React.Component {
         // console.log("input changed");
 
         // copy values, not reference
-        var current_list_fields = Object.assign({}, this.state.fields);     
+        var current_list_fields = Object.assign({}, this.state.form_fields);     
         // e.g. current_list_fields['artist'] = 'Artist1'
         current_list_fields[event.target.name] = event.target.value;
         // apply new value to state
@@ -73,13 +100,9 @@ class UIManager extends React.Component {
                                     } />
                 </div>
                 <List list={filtered_list}/>
-<<<<<<< HEAD
-                <ItemForm 
-                    createItem={ (item) => this.createItem(item) }/>
-=======
-                <ItemForm item={this.state.form_fields }
-                          onChangeFormInput={(event) => this.onChangeFormInput(event) } />
->>>>>>> c4.7
+                <ItemForm item={this.state.form_fields}
+                          onChangeFormInput={(event) => this.onChangeFormInput(event) } 
+                          createItem={() => this.createItem()} />
             </div>
         );
     }

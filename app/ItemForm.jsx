@@ -9,6 +9,8 @@ class ItemForm extends React.Component {
     onSubmitForm(event) {
         event.preventDefault(); // prevent reload of page
         console.log("form submitted");
+
+        this.props.createItem();
     }
 
     render() {
@@ -30,25 +32,25 @@ class ItemForm extends React.Component {
                         <label>ID:</label>
                         <input name="id" 
                                onChange={(event) => this.props.onChangeFormInput(event)}  
-                               defaultValue={item.id} />
+                               value={item.id} />
                     </p>
                     <p>
                         <label>Title:</label>
                         <input name="title" 
                                onChange={(event) => this.props.onChangeFormInput(event)}
-                               defaultValue={item.title} />
+                               value={item.title} />
                     </p>
                     <p>
                         <label>Artist:</label>
                         <input name="artist" 
                                onChange={(event) => this.props.onChangeFormInput(event)}
-                               defaultValue={item.artist} />
+                               value={item.artist} />
                     </p>
                     <p>
                         <label>Album:</label>
                         <input name="album" 
                                onChange={(event) => this.props.onChangeFormInput(event)}
-                               defaultValue={item.album} />
+                               value={item.album} />
                     </p>
 
                     <div className="create">
