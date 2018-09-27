@@ -8,8 +8,7 @@ class ItemForm extends React.Component {
     
     onSubmitForm(event) {
         event.preventDefault(); // prevent reload of page
-        console.log("form submitted");
-
+        // forward request to UIManager
         this.props.createItem();
     }
 
