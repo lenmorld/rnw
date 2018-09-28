@@ -1,11 +1,9 @@
 import React from 'react';
+import axios from 'axios';
+
 import Header from './Header';
 import List from './List';
 import ItemForm from './ItemForm';
-
-import data from './data';
-
-console.log(data);
 
 class UIManager extends React.Component {
 
@@ -14,7 +12,7 @@ class UIManager extends React.Component {
         // debugger;
         this.state = {
             search_term: '',
-            list: data.list,
+            list: [],
             form_fields: {
                 id: '',
                 title: '',
@@ -23,6 +21,15 @@ class UIManager extends React.Component {
             },
             form_mode: 'CREATE'
         }
+    }
+
+    componentWillMount() {
+        axios.get('/list').then((response) => {
+            //debugger;
+            this.setState({
+                list: response.data
+            });
+        });
     }
 
     // data API - CRUD methods
@@ -175,6 +182,10 @@ class UIManager extends React.Component {
     }
 
     render() {
+        if (!this.state.list.length) {
+            return (<div>Loading...</div>);
+        }
+
         // debugger;        
         var list = this.state.list;
         var search_term = this.state.search_term;
