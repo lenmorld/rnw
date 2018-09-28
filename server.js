@@ -67,27 +67,56 @@ function runServer(json_data) {
     server.post("/list", function(req, res) {
         console.log(`Create item with details: ${JSON.stringify(req.body)}`);
 
-        // TODO: add item to file
-        // sample response: return request body
-        res.send(JSON.stringify({ "created": req.body}));
+        // get item data from req.body
+        var item = req.body;
+        // copy list values, not reference, using ES6 spread operator
+        var current_list_items = [...json_data.list];
+        // add new item
+        current_list_items.push(item);
+
+        writeToFileAndSendResponse(current_list_items, res);
     });
 
     // UPDATE
     server.put("/list/:id", function(req, res) {
         console.log(`Edit item with id: ${req.params.id}, change to ${JSON.stringify(req.body)}`);
 
-        // TODO: update item in file
-        // sample response: return request body
-        res.send(JSON.stringify({ "updated": req.body }));
+        // get item id from req.params, and data from req.body
+        var item_id = req.params.id;
+        var item = req.body;
+        // copy by value, not by reference, using ES6 spread operator
+        var current_list_items = [...json_data.list];
+        // init new list that will hold new items
+        var updated_list_items = [];
+        /*
+           loop through all items
+           if old_item matches id of the updated one, replace it
+           else keep old_item
+       */
+        current_list_items.forEach(function (old_item) {
+            if (old_item.id === item_id) {
+                updated_list_items.push(item);
+            } else {
+                updated_list_items.push(old_item);
+            }
+        });
+
+        writeToFileAndSendResponse(updated_list_items, res);
     });
 
     // DELETE
     server.delete("/list/:id", function(req, res) {
         console.log(`Delete item with id: ${req.params.id}`);
 
-        // TODO: delete item in file
-        // sample response: return request param id
-        res.send(JSON.stringify({ "deleted": req.params.id}));
+        var item_id = req.params.id;
+        // copy by value, not by reference, using ES6 spread operator
+        var current_list_items = [...json_data.list]; 
+        // filter list copy, by excluding item to delete
+        var filtered_list = current_list_items.filter(function(item) {
+            return item.id !== item_id;
+        });
+
+        writeToFileAndSendResponse(filtered_list, res);
     });
 
 
