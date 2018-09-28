@@ -34,43 +34,33 @@ class UIManager extends React.Component {
 
     // data API - CRUD methods
     createItem() {
-        // debugger;
-        console.log("[UIManager] Create ");
-
         // get Item data from state
         var item = this.state.form_fields;
-        // copy list values, not reference, using ES6 spread operator
-        var current_list_items = [...this.state.list];
-        // add new item
-        current_list_items.push(item);
-        // apply change to state
-        this.setState({
-            list: current_list_items
-        });
 
-        // empty fields for next round
-        this.setState({
-            form_fields: {
-                id: '',
-                title: '',
-                artist: '',
-                album: ''
-            }
+        axios.post("/list", item).then((response) => {
+            // debugger;
+            // apply response data to state
+            this.setState({
+                list: response.data.list,
+                form_fields: {
+                    id: '',
+                    title: '',
+                    artist: '',
+                    album: ''
+                }
+            });
+        }).catch(function (error) {
+            console.error(error.response.data);
         });
     }
 
     deleteItem(item_id) {
-        // console.log("[UIManager]: delete ", item_id );
-
-        // copy by value, not by reference, using ES6 spread operator
-        var current_list_items = [...this.state.list];
-        // filter list copy, by excluding item to delete
-        var filtered_list = current_list_items.filter(function(item) {
-            return item.id !== item_id;
-        });
-        // apply change to state
-        this.setState({
-            list: filtered_list
+        // debugger;
+        axios.delete(`/list/${item_id}`).then(response => {
+            // apply response data to state
+            this.setState({
+                list: response.data.list
+            });
         });
     }
 
@@ -99,35 +89,18 @@ class UIManager extends React.Component {
 
         // get Item data from state
         var item = this.state.form_fields;
-
-        // copy by value, not by reference, using ES6 spread operator
-        var current_list_items = [...this.state.list];
-        // init new list that will hold new items
-        var updated_list_items = [];
-        /*
-           loop through all items
-           if old_item matches id of the updated one, replace it
-           else keep old_item
-       */
-        current_list_items.forEach(function (old_item) {
-            if (old_item.id === item.id) {
-                updated_list_items.push(item);
-            } else {
-                updated_list_items.push(old_item);
-            }
-        });
-
-        // apply changes to state list
-        // reset form to CREATE
-        this.setState({
-            list: updated_list_items,
-            form_mode: 'CREATE',
-            form_fields: {
-                id: '',
-                title: '',
-                artist: '',
-                album: ''
-            }
+        axios.put(`/list/${item.id}`, item).then(response => {
+            // apply response data to state
+            this.setState({
+                list: response.data.list,
+                form_mode: 'CREATE',
+                form_fields: {
+                    id: '',
+                    title: '',
+                    artist: '',
+                    album: ''
+                }
+            });
         });
 
         // hideForm
