@@ -1,6 +1,7 @@
 // import built-in Node package
 var http = require('http');
 var path = require ('path');
+var body_parser = require('body-parser');
 // import modules we created
 var utils = require('./server/utils');
 
@@ -19,6 +20,9 @@ function runServer(json_data) {
     // serve folders that index.html needs
     // public is the webpack output folder
     server.use(express.static('public'));
+
+    server.use(body_parser.json());
+    server.use(body_parser.urlencoded( { extended: true } ));
 
     server.get("/", function(req, res) {
         res.sendFile(__dirname + '/index.html');
@@ -45,6 +49,34 @@ function runServer(json_data) {
             res.send( { "error": `Item with ID ${req.params.id} not found` });
         }
     });
+
+    // CREATE
+    server.post("/list", function(req, res) {
+        console.log(`Create item with details: ${JSON.stringify(req.body)}`);
+
+        // TODO: add item to file
+        // sample response: return request body
+        res.send(JSON.stringify({ "created": req.body}));
+    });
+
+    // UPDATE
+    server.put("/list/:id", function(req, res) {
+        console.log(`Edit item with id: ${req.params.id}, change to ${JSON.stringify(req.body)}`);
+
+        // TODO: update item in file
+        // sample response: return request body
+        res.send(JSON.stringify({ "updated": req.body }));
+    });
+
+    // DELETE
+    server.delete("/list/:id", function(req, res) {
+        console.log(`Delete item with id: ${req.params.id}`);
+
+        // TODO: delete item in file
+        // sample response: return request param id
+        res.send(JSON.stringify({ "deleted": req.params.id}));
+    });
+
 
     server.get("/json", function(req, res) {
         res.send(JSON.stringify({ name: "Lenny"}));
