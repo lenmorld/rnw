@@ -3,7 +3,6 @@ var http = require('http');
 var path = require ('path');
 var body_parser = require('body-parser');
 // import modules we created
-// var utils = require('./server/utils');
 var mongo_db = require('./server/mongo_db');
 
 // import express and init server using express()
@@ -11,12 +10,6 @@ var express = require('express');
 var server = express();
 
 var port = 4000;
-
-// --- file operations ---
-// __dirname is a Node global var for the current directory
-// var data_path = path.join(__dirname, 'server/data.json');
-// read data from JSON file
-// utils.readJSON(data_path, runServer);
 
 // --- db connection ---
 var db_connection_url = 'mongodb://user1:pass4321@ds251622.mlab.com:51622/spot_db';
@@ -39,19 +32,6 @@ mongo_db.init_db(db_connection_url).then(function(db_instance) {
 });
 // we can init. more than one connection as needed
 
-
-// write list to file and send the response to client
-// function writeToFileAndSendResponse(updated_list, response) {
-//     var data_obj = {
-//         list: updated_list
-//     };
-
-//     // writeJSON returns updated list if successful
-//     utils.writeJSON(data_path, data_obj, function(json_data) {
-//         // callback function - send updated json_data to client    
-//         response.send(JSON.stringify(json_data));
-//     });
-// }
 
 function runServer(db_collection) {
     // serve folders that index.html needs
