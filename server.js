@@ -46,7 +46,10 @@ function runServer(db_collection) {
 
     // fetch all
     server.get("/list", function(req, res) {
-        res.send(json_data['list']);
+        // res.send(json_data['list']);
+        db_collection.find().toArray(function(err, result) {
+            res.send(result);
+        });
     });
 
     // fetch one
