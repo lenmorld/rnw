@@ -57,17 +57,10 @@ function runServer(db_collection) {
     server.get("/list/:id", function(req, res) {
         console.log(`GET Item ID ${req.params.id}`);
 
-        var list = json_data["list"];
-        var matches = list.filter(function(item) {
-            return item.id === req.params.id;
+        var item_id = req.params.id;
+        db_collection.findOne({ id: item_id }, function(err, result) {
+            res.send(result);
         });
-
-        if (matches && matches.length) {
-            res.send(matches[0]);     // there should only be one matching
-        } else {
-            res.status(404);    // Not Found
-            res.send( { "error": `Item with ID ${req.params.id} not found` });
-        }
     });
 
     // CREATE
