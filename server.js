@@ -3,7 +3,8 @@ var http = require('http');
 var path = require ('path');
 var body_parser = require('body-parser');
 // import modules we created
-var utils = require('./server/utils');
+// var utils = require('./server/utils');
+var mongo_db = require('./server/mongo_db');
 
 // import express and init server using express()
 var express = require('express');
@@ -11,10 +12,33 @@ var server = express();
 
 var port = 4000;
 
+// --- file operations ---
 // __dirname is a Node global var for the current directory
-var data_path = path.join(__dirname, 'server/data.json');
+// var data_path = path.join(__dirname, 'server/data.json');
 // read data from JSON file
-utils.readJSON(data_path, runServer);
+// utils.readJSON(data_path, runServer);
+
+// --- db connection ---
+var db_connection_url = 'mongodb://user1:pass4321@ds251622.mlab.com:51622/spot_db';
+// if local mongodb server
+// var db_connection_url = "mongodb://localhost:27017/";
+var db_name = "spot_db";
+var db_collection_name = "items";
+mongo_db.init_db(db_connection_url).then(function(db_instance) {
+    var db_object = db_instance.db(db_name);       // get reference to "spot_db" database
+    var db_collection = db_object.collection(db_collection_name);
+
+    // TEST
+    db_collection.find().toArray(function(err, result) {
+        console.log({ "list": result});
+        db_instance.close();
+    });
+
+    // run server and pass db collection reference for executing commands
+    runServer(db_collection);
+});
+// we can init. more than one connection as needed
+
 
 // write list to file and send the response to client
 function writeToFileAndSendResponse(updated_list, response) {
