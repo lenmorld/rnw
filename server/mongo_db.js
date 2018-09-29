@@ -1,4 +1,6 @@
-var MongoClient = require('mongodb').MongoClient;
+// import and use mongodb.MongoClient
+var mongodb = require('mongodb');
+var MongoClient = mongodb.MongoClient;
 
 function init_db(db_connection_url) {
     // function returns a promise that resolves to a mongodb instance
