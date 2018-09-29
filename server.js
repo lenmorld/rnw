@@ -24,7 +24,6 @@ mongo_db.init_db(db_connection_url).then(function(db_instance) {
     // TEST
     db_collection.find().toArray(function(err, result) {
         console.log({ "list": result});
-        db_instance.close();
     });
 
     // run server and pass db collection reference for executing commands
