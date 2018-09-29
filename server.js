@@ -76,12 +76,15 @@ function runServer(db_collection) {
 
         // get item data from req.body
         var item = req.body;
-        // copy list values, not reference, using ES6 spread operator
-        var current_list_items = [...json_data.list];
-        // add new item
-        current_list_items.push(item);
-
-        writeToFileAndSendResponse(current_list_items, res);
+    
+        db_collection.insertOne(item, function(err, result) {
+            if (err) throw err;
+            // send back entire updated list, to make sure frontend data is up-to-date
+            db_collection.find().toArray(function(_err, _result) {
+                if (_err) throw _err;
+                res.send(_result);
+            });
+        });
     });
 
     // UPDATE
@@ -91,24 +94,15 @@ function runServer(db_collection) {
         // get item id from req.params, and data from req.body
         var item_id = req.params.id;
         var item = req.body;
-        // copy by value, not by reference, using ES6 spread operator
-        var current_list_items = [...json_data.list];
-        // init new list that will hold new items
-        var updated_list_items = [];
-        /*
-           loop through all items
-           if old_item matches id of the updated one, replace it
-           else keep old_item
-       */
-        current_list_items.forEach(function (old_item) {
-            if (old_item.id === item_id) {
-                updated_list_items.push(item);
-            } else {
-                updated_list_items.push(old_item);
-            }
-        });
 
-        writeToFileAndSendResponse(updated_list_items, res);
+        db_collection.updateOne({ id: item_id }, { $set: item }, function(err, result) {
+            if (err) throw err;
+            // send back entire updated list, to make sure frontend data is up-to-date
+            db_collection.find().toArray(function(_err, _result) {
+                if (_err) throw _err;
+                res.send(_result);
+            });
+        });
     });
 
     // DELETE
@@ -116,14 +110,15 @@ function runServer(db_collection) {
         console.log(`Delete item with id: ${req.params.id}`);
 
         var item_id = req.params.id;
-        // copy by value, not by reference, using ES6 spread operator
-        var current_list_items = [...json_data.list]; 
-        // filter list copy, by excluding item to delete
-        var filtered_list = current_list_items.filter(function(item) {
-            return item.id !== item_id;
-        });
 
-        writeToFileAndSendResponse(filtered_list, res);
+        db_collection.deleteOne({ id: item_id }, function(err, result) {
+            if (err) throw err;
+            // send back entire updated list, to make sure frontend data is up-to-date
+            db_collection.find().toArray(function(_err, _result) {
+                if (_err) throw _err;
+                res.send(_result);
+            });
+        });
     });
 
 

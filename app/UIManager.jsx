@@ -25,7 +25,7 @@ class UIManager extends React.Component {
 
     componentWillMount() {
         axios.get('/list').then((response) => {
-            //debugger;
+            // debugger;
             this.setState({
                 list: response.data
             });
@@ -41,7 +41,7 @@ class UIManager extends React.Component {
             // debugger;
             // apply response data to state
             this.setState({
-                list: response.data.list,
+                list: response.data,
                 form_fields: {
                     id: '',
                     title: '',
@@ -59,7 +59,7 @@ class UIManager extends React.Component {
         axios.delete(`/list/${item_id}`).then(response => {
             // apply response data to state
             this.setState({
-                list: response.data.list
+                list: response.data
             });
         });
     }
@@ -92,7 +92,7 @@ class UIManager extends React.Component {
         axios.put(`/list/${item.id}`, item).then(response => {
             // apply response data to state
             this.setState({
-                list: response.data.list,
+                list: response.data,
                 form_mode: 'CREATE',
                 form_fields: {
                     id: '',
@@ -127,7 +127,12 @@ class UIManager extends React.Component {
         current_list_fields[event.target.name] = event.target.value;
         // apply new value to state
         this.setState({
-            form_fields: current_list_fields
+            form_fields: {
+                id: current_list_fields.id,
+                title: current_list_fields.title,
+                artist: current_list_fields.artist,
+                album: current_list_fields.album
+            }
         });
     }
 
