@@ -41,19 +41,19 @@ mongo_db.init_db(db_connection_url).then(function(db_instance) {
 
 
 // write list to file and send the response to client
-function writeToFileAndSendResponse(updated_list, response) {
-    var data_obj = {
-        list: updated_list
-    };
+// function writeToFileAndSendResponse(updated_list, response) {
+//     var data_obj = {
+//         list: updated_list
+//     };
 
-    // writeJSON returns updated list if successful
-    utils.writeJSON(data_path, data_obj, function(json_data) {
-        // callback function - send updated json_data to client    
-        response.send(JSON.stringify(json_data));
-    });
-}
+//     // writeJSON returns updated list if successful
+//     utils.writeJSON(data_path, data_obj, function(json_data) {
+//         // callback function - send updated json_data to client    
+//         response.send(JSON.stringify(json_data));
+//     });
+// }
 
-function runServer(json_data) {
+function runServer(db_collection) {
     // serve folders that index.html needs
     // public is the webpack output folder
     server.use(express.static('public'));
