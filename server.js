@@ -4,6 +4,7 @@ var path = require ('path');
 var body_parser = require('body-parser');
 // import modules we created
 var mongo_db = require('./server/mongo_db');
+var spotify = require('./api/spotify');
 
 // import express and init server using express()
 var express = require('express');
@@ -118,6 +119,9 @@ function runServer(db_collection) {
     server.get("/json", function(req, res) {
         res.send(JSON.stringify({ name: "Lenny"}));
     });
+
+    // include SPOTIFY API routes
+    spotify.spotify_routes(server, db_collection);
 
     server.listen(port, function () { // Callback function
         console.log("Starting server at " + port);
