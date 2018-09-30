@@ -50,7 +50,23 @@ exports.spotify_routes = function(server, db_collection) {
 
         var query_string = req.params.query;
         getAccessToken().then(function(access_token) {
-            res.send({ search: query_string, access_token: access_token });
+            var _url = `https://api.spotify.com/v1/search?query=${query_string}&type=track`;
+
+            axios({
+                method: 'GET',
+                url: _url,
+                headers: {
+                    "Authorization": `Bearer ${access_token}`,
+                    "Accept": "application/json"
+                }
+            }).then(function(_res) {
+                // inspect response data
+                console.log(`search response: ${JSON.stringify(_res.data)}`);
+                res.send(_res.data.tracks.items);
+            }).catch(function(err) {
+                throw err;
+            });
+            // res.send({ search: query_string, access_token: access_token });
         });
 
         // sample response for testing
