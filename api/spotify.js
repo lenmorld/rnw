@@ -9,10 +9,10 @@ function getAccessToken() {
 
     return new Promise(function(resolve, reject) {
         if (saved_access_token) {
-            console.log("Using saved access token: ", saved_access_token);
+            console.log("[SPOTIFY] Using saved access token: ", saved_access_token);
             resolve(saved_access_token);
         } else {
-            console.log("Requesting a new access token: ", saved_access_token);
+            console.log("[SPOTIFY] Requesting a new access token... ");
 
             // REQUEST 1: prepare Spotify token request
             var url = 'https://accounts.spotify.com/api/token';
@@ -31,9 +31,8 @@ function getAccessToken() {
                 }
             }).then(function(response) {
                 // console.log(response.data);
-                console.log("Access token: ", response.data.access_token);
+                console.log("[SPOTIFY] Access token: ", response.data.access_token);
                 // res.send(response.data.access_token);
-    
                 saved_access_token = response.data.access_token;
                 resolve(saved_access_token);
             }).catch(function(err) {
