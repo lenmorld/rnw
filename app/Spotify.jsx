@@ -9,8 +9,9 @@ class Spotify extends React.Component {
                     <div className="close_form">
                         <span onClick={this.props.hideSpotify}>[🗙]</span>
                     </div>
-                    <h3>Search Spotify tracks</h3>
-                    <input type="text" />
+                    <h3>search Spotify</h3>
+                    <input type="text" onChange={ (event) => this.trackSearchTerm(event) }/>
+                    <button onClick={() => this.searchSpotify()}>Search</button>
                 </div>
             </div>
         );
