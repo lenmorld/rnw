@@ -234,7 +234,6 @@ class UIManager extends React.Component {
                           mode={this.state.form_mode} />
                 <Spotify hideSpotify={this.hideSpotify} 
                          toggleItemFromSpotify={(item) => this.toggleItemFromSpotify(item)}
-                         currentList={this.state.list}
                          isInStateList={(item_id) => this.isInStateList(item_id)} />
             </div>
         );
