@@ -34,11 +34,11 @@ class UIManager extends React.Component {
     }
 
     // data API - CRUD methods
-    createItem() {
-        // get Item data from state
-        var item = this.state.form_fields;
+    createItem(item) {
+        // get Item data from passed parameter or from state
+        var _item = item || this.state.form_fields;
 
-        axios.post("/list", item).then((response) => {
+        axios.post("/list", _item).then((response) => {
             // debugger;
             // apply response data to state
             this.setState({
@@ -172,6 +172,16 @@ class UIManager extends React.Component {
 
     toggleItemFromSpotify(item) {
         console.log(item);
+
+        var is_in_list = this.state.list.some(function(old_item) {
+            return old_item.id === item.id;
+        });
+
+        if (is_in_list) {
+            this.deleteItem(item.id);
+        } else {
+            this.createItem(item);
+        }
     }
 
     render() {
