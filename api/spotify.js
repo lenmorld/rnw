@@ -61,7 +61,7 @@ exports.spotify_routes = function(server, db_collection) {
                 }
             }).then(function(_res) {
                 // inspect response data
-                console.log(`search response: ${JSON.stringify(_res.data)}`);
+                console.log(`search response: ${JSON.stringify(_res.data.tracks.items)}`);
                 res.send(_res.data.tracks.items);
             }).catch(function(err) {
                 throw err;
