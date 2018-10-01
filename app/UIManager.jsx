@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from './Header';
 import List from './List';
 import ItemForm from './ItemForm';
+import Spotify from './Spotify';
 
 class UIManager extends React.Component {
 
@@ -159,6 +160,16 @@ class UIManager extends React.Component {
         this.showForm();
     }
 
+    showSpotify() {
+        var modal = document.querySelector('.spotify_modal');
+        modal.style.display = "block";
+    }
+
+    hideSpotify() {
+        var modal = document.querySelector('.spotify_modal');
+        modal.style.display = "none";
+    }
+
     render() {
         if (!this.state.list.length) {
             return (<div>Loading...</div>);
@@ -189,6 +200,7 @@ class UIManager extends React.Component {
                                        } 
                                     } />
                     <span className="add" onClick={() => this.onAddItem()}>[➕]</span>
+                    <span className="add_spotify" onClick={this.showSpotify}>[➕ from Spotify]</span>
                 </div>
                 <List list={filtered_list} 
                       deleteItem={(item_id) => this.deleteItem(item_id) }
@@ -198,6 +210,7 @@ class UIManager extends React.Component {
                           createItem={() => this.createItem()}
                           saveUpdatedItem={item => this.saveUpdatedItem(item)}
                           mode={this.state.form_mode} />
+                <Spotify hideSpotify={this.hideSpotify}/>
             </div>
         );
     }
