@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Spotify extends React.Component {
     render() {
