@@ -170,6 +170,10 @@ class UIManager extends React.Component {
         modal.style.display = "none";
     }
 
+    toggleItemFromSpotify(item) {
+        console.log(item);
+    }
+
     render() {
         if (!this.state.list.length) {
             return (<div>Loading...</div>);
@@ -210,7 +214,8 @@ class UIManager extends React.Component {
                           createItem={() => this.createItem()}
                           saveUpdatedItem={item => this.saveUpdatedItem(item)}
                           mode={this.state.form_mode} />
-                <Spotify hideSpotify={this.hideSpotify}/>
+                <Spotify hideSpotify={this.hideSpotify} 
+                         toggleItemFromSpotify={(item) => this.toggleItemFromSpotify(item)}/>
             </div>
         );
     }
