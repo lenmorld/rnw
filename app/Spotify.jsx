@@ -62,7 +62,7 @@ class Spotify extends React.Component {
                         <button onClick={() => this.searchSpotify()}>Search</button>
                     </div>
                     <List list={this.state.search_results}
-                          mode={"spotify_api"} />
+                          display_type={"spotify_api"} />
                 </div>
             </div>
         );
