@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import List from './List';
 
 class Spotify extends React.Component {
 
@@ -7,7 +8,8 @@ class Spotify extends React.Component {
         super(props);
 
         this.state = {
-            search_term: ''
+            search_term: '',
+            search_results: []
         }
     }
 
@@ -37,6 +39,10 @@ class Spotify extends React.Component {
                 });
 
                 console.log(squashed_results);
+
+                this.setState({
+                    search_results: squashed_results
+                });
             })
             .catch((err) => {
                 console.log(`[Spotify.jsx] search error: ${err}`);
@@ -55,6 +61,8 @@ class Spotify extends React.Component {
                         <input type="text" onChange={ (event) => this.trackSearchTerm(event) }/>
                         <button onClick={() => this.searchSpotify()}>Search</button>
                     </div>
+                    <List list={this.state.search_results}
+                          mode={"spotify_api"} />
                 </div>
             </div>
         );
