@@ -24,7 +24,19 @@ class Spotify extends React.Component {
         axios.get(`/spotify/search/${this.state.search_term}`)
             .then((res) => {
                 // debugger;
-                console.log(res.data);
+                // console.log(res.data);
+
+                var search_results = res.data;
+                var squashed_results = search_results.map(function(track) {
+                    return {
+                        id: track.id,
+                        artist: track.artists[0].name,
+                        album: track.album.name,
+                        title: track.name
+                    };
+                });
+
+                console.log(squashed_results);
             })
             .catch((err) => {
                 console.log(`[Spotify.jsx] search error: ${err}`);
