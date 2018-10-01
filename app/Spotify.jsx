@@ -22,11 +22,11 @@ class Spotify extends React.Component {
 
     searchSpotify() {
         axios.get(`/spotify/search/${this.state.search_term}`)
-            .then(function(res) {
+            .then((res) => {
                 // debugger;
                 console.log(res.data);
             })
-            .catch(function(err) {
+            .catch((err) => {
                 console.log(`[Spotify.jsx] search error: ${err}`);
             });
     }
