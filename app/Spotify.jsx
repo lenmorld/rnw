@@ -38,7 +38,7 @@ class Spotify extends React.Component {
                     };
                 });
 
-                console.log(squashed_results);
+                // console.log(squashed_results);
 
                 this.setState({
                     search_results: squashed_results
@@ -63,7 +63,8 @@ class Spotify extends React.Component {
                     </div>
                     <List list={this.state.search_results}
                           display_type={"spotify_api"}
-                          toggleItem={this.props.toggleItemFromSpotify} />
+                          toggleItem={this.props.toggleItemFromSpotify}
+                          isInStateList={this.props.isInStateList} />
                 </div>
             </div>
         );

@@ -18,6 +18,7 @@ class List extends React.Component {
                                 editItem={this.props.editItem}
                                 display_type={this.props.display_type}
                                 toggleItem={this.props.toggleItem}
+                                isInStateList={this.props.isInStateList}
                              />
                         );
                     })
