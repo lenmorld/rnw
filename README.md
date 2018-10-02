@@ -11,4 +11,4 @@ Slides will be available via Slack during the workshop
 
 Preview:
 
-![Music Hub preview]([preview.gif])
+![Music Hub preview]([./screens/preview.gif])
