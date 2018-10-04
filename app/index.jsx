@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Home extends React.Component {
+class App extends React.Component {
     render() {
         return (
             <div>React: Hello World!</div>
@@ -9,4 +9,4 @@ class Home extends React.Component {
     }
 }
 
-ReactDOM.render(<Home />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
