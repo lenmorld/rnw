@@ -18,5 +18,6 @@ Slides will be available via Slack during the workshop
 
 ### Slides
 
-[<img src="./react_node_workshop_slides.png">](https://github.com/lenmorld/rnw/blob/master/react_node_workshop_slides.pdf)
+[<img src="./react_node_workshop_slides.png">](https://github.com/lenmorld/rnw/raw/master/react_node_workshop_slides.pdf)
+
 
