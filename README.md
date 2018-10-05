@@ -7,9 +7,6 @@ as well as Spotify API for searching.
 stack: React + Node
 
 
-Slides will be available via Slack during the workshop
-
-
 ### Preview:
 
 ![Music Hub preview](./screens/preview.gif)
