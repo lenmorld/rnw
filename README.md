@@ -13,3 +13,11 @@ Slides will be available via Slack during the workshop
 ### Preview:
 
 ![Music Hub preview](./screens/preview.gif)
+
+
+
+### Slides
+
+[Slides](./"React and Node workshop.pdf")
+
+![Slides](react_node_workshop_slides.png)
