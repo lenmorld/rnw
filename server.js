@@ -4,6 +4,8 @@ var path = require ('path');
 var body_parser = require('body-parser');
 // import modules we created
 var mongo_db = require('./server/mongo_db');
+var spotify = require('./api/spotify');
+var utils = require('./server/utils');
 
 // import express and init server using express()
 var express = require('express');
@@ -84,11 +86,11 @@ function runServer(db_collection) {
 
         // get item data from req.body
         var item = req.body;
-    
-        checkIfItemExist(item).then(function(exists) {
-            if (exists) {
-                res.send({ message: "item already exists!"});
-            } else {
+
+        // --- data validation ---
+        // don't insert if exist already
+        utils.checkIfItemExist(item.id, db_collection).then(function(exists) {
+            if (!exists) {
                 db_collection.insertOne(item, function(err, result) {
                     if (err) throw err;
                     // send back entire updated list, to make sure frontend data is up-to-date
@@ -97,10 +99,13 @@ function runServer(db_collection) {
                         res.send(_result);
                     });
                 });
-            }
-        })
-        .catch(function(err) {
-            console.log(err);
+            } else {
+                console.log(`[SERVER CREATE]: error item already exists`);
+                res.status(403);
+                res.send({ message: `item ${item.id}  already exists!` });
+            }   
+
+        }).catch(function(err) {
             throw err;
         });
     });
@@ -129,13 +134,25 @@ function runServer(db_collection) {
 
         var item_id = req.params.id;
 
-        db_collection.deleteOne({ id: item_id }, function(err, result) {
-            if (err) throw err;
-            // send back entire updated list, to make sure frontend data is up-to-date
-            db_collection.find().toArray(function(_err, _result) {
-                if (_err) throw _err;
-                res.send(_result);
-            });
+        // --- data validation ---
+        // don't delete if doesn't exist
+        utils.checkIfItemExist(item_id, db_collection).then(function(exists) {
+            if (exists) {
+                db_collection.deleteOne({ id: item_id }, function(err, result) {
+                    if (err) throw err;
+                    // send back entire updated list, to make sure frontend data is up-to-date
+                    db_collection.find().toArray(function(_err, _result) {
+                        if (_err) throw _err;
+                        res.send(_result);
+                    });
+                });
+            } else {
+                console.log(`[SERVER DELETE]: error doesn't exists`);
+                res.status(403);
+                res.send({ message: `item ${item_id}  doesn't exist!` });
+            }   
+        }).catch(function(err) {
+            throw err;
         });
     });
 
@@ -143,6 +160,9 @@ function runServer(db_collection) {
     server.get("/json", function(req, res) {
         res.send(JSON.stringify({ name: "Lenny"}));
     });
+
+    // include SPOTIFY API routes
+    spotify.spotify_routes(server, db_collection);
 
     server.listen(port, function () { // Callback function
         console.log("Starting server at " + port);

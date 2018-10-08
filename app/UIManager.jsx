@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from './Header';
 import List from './List';
 import ItemForm from './ItemForm';
+import Spotify from './Spotify';
 
 class UIManager extends React.Component {
 
@@ -33,12 +34,16 @@ class UIManager extends React.Component {
     }
 
     // data API - CRUD methods
-    createItem() {
-        // get Item data from state
-        var item = this.state.form_fields;
+    createItem(item) {
+        // get Item data from passed parameter or from state
+        var _item = item || this.state.form_fields;
 
-        axios.post("/list", item).then((response) => {
+        axios.post("/list", _item).then((response) => {
             // debugger;
+
+            // --- data validation ---
+            console.log(response);
+
             // apply response data to state
             this.setState({
                 list: response.data,
@@ -50,7 +55,14 @@ class UIManager extends React.Component {
                 }
             });
         }).catch(function (error) {
-            console.error(error.response.data);
+            // --- data validation ---
+            // error goes here
+            // debugger;
+            alert(error.response.data.message);
+            // TODO: this.state.errors, display in UIManager
+            
+            // response.data.message
+            console.log(error.response.data);
         });
     }
 
@@ -159,6 +171,38 @@ class UIManager extends React.Component {
         this.showForm();
     }
 
+    showSpotify() {
+        var modal = document.querySelector('.spotify_modal');
+        modal.style.display = "block";
+    }
+
+    hideSpotify() {
+        var modal = document.querySelector('.spotify_modal');
+        modal.style.display = "none";
+    }
+
+    toggleItemFromSpotify(item) {
+        // console.log(item);
+
+        var is_in_list = this.state.list.some(function(old_item) {
+            return old_item.id === item.id;
+        });
+
+        if (is_in_list) {
+            this.deleteItem(item.id);
+        } else {
+            this.createItem(item);
+        }
+    }
+
+    isInStateList(item_id) {
+        // console.log(item_id);
+        var is_in_list = this.state.list.some(function(old_item) {
+            return old_item.id === item_id;
+        });
+        return is_in_list;
+    }
+
     render() {
         if (!this.state.list.length) {
             return (<div>Loading...</div>);
@@ -189,6 +233,7 @@ class UIManager extends React.Component {
                                        } 
                                     } />
                     <span className="add" onClick={() => this.onAddItem()}>[➕]</span>
+                    <span className="add_spotify" onClick={this.showSpotify}>[➕ from Spotify]</span>
                 </div>
                 <List list={filtered_list} 
                       deleteItem={(item_id) => this.deleteItem(item_id) }
@@ -198,6 +243,9 @@ class UIManager extends React.Component {
                           createItem={() => this.createItem()}
                           saveUpdatedItem={item => this.saveUpdatedItem(item)}
                           mode={this.state.form_mode} />
+                <Spotify hideSpotify={this.hideSpotify} 
+                         toggleItemFromSpotify={(item) => this.toggleItemFromSpotify(item)}
+                         isInStateList={(item_id) => this.isInStateList(item_id)} />
             </div>
         );
     }
