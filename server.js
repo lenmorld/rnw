@@ -119,13 +119,25 @@ function runServer(db_collection) {
 
         var item_id = req.params.id;
 
-        db_collection.deleteOne({ id: item_id }, function(err, result) {
-            if (err) throw err;
-            // send back entire updated list, to make sure frontend data is up-to-date
-            db_collection.find().toArray(function(_err, _result) {
-                if (_err) throw _err;
-                res.send(_result);
-            });
+        // --- data validation ---
+        // don't delete if doesn't exist
+        utils.checkIfItemExist(item_id, db_collection).then(function(exists) {
+            if (exists) {
+                db_collection.deleteOne({ id: item_id }, function(err, result) {
+                    if (err) throw err;
+                    // send back entire updated list, to make sure frontend data is up-to-date
+                    db_collection.find().toArray(function(_err, _result) {
+                        if (_err) throw _err;
+                        res.send(_result);
+                    });
+                });
+            } else {
+                console.log(`[SERVER DELETE]: error doesn't exists`);
+                res.status(403);
+                res.send({ message: `item ${item_id}  doesn't exist!` });
+            }   
+        }).catch(function(err) {
+            throw err;
         });
     });
 
