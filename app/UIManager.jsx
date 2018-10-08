@@ -20,7 +20,7 @@ class UIManager extends React.Component {
                 artist: '',
                 album: ''
             },
-            form_mode: 'CREATE'
+            form_mode: 'CREATE',
         }
     }
 
@@ -40,6 +40,10 @@ class UIManager extends React.Component {
 
         axios.post("/list", _item).then((response) => {
             // debugger;
+
+            // --- data validation ---
+            console.log(response);
+
             // apply response data to state
             this.setState({
                 list: response.data,
@@ -51,7 +55,14 @@ class UIManager extends React.Component {
                 }
             });
         }).catch(function (error) {
-            console.error(error.response.data);
+            // --- data validation ---
+            // error goes here
+            // debugger;
+            alert(error.response.data.message);
+            // TODO: this.state.errors, display in UIManager
+            
+            // response.data.message
+            console.log(error.response.data);
         });
     }
 
