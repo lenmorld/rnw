@@ -32,6 +32,21 @@ mongo_db.init_db(db_connection_url).then(function(db_instance) {
 });
 // we can init. more than one connection as needed
 
+function checkIfItemExist(item) {
+    // VALIDATION: check if it exists first, before adding or deleting
+    // returns true or false
+    var find_db_item = new Promise(function(resolve, reject) {
+        db_collection.findOne({ id: item.id }, function(err, result) {
+            if (err) reject(err);
+
+            if (result && result.id === item.id) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
+}
 
 function runServer(db_collection) {
     // serve folders that index.html needs
@@ -71,13 +86,23 @@ function runServer(db_collection) {
         // get item data from req.body
         var item = req.body;
     
-        db_collection.insertOne(item, function(err, result) {
-            if (err) throw err;
-            // send back entire updated list, to make sure frontend data is up-to-date
-            db_collection.find().toArray(function(_err, _result) {
-                if (_err) throw _err;
-                res.send(_result);
-            });
+        checkIfItemExist(item).then(function(exists) {
+            if (exists) {
+                res.send({ message: "item already exists!"});
+            } else {
+                db_collection.insertOne(item, function(err, result) {
+                    if (err) throw err;
+                    // send back entire updated list, to make sure frontend data is up-to-date
+                    db_collection.find().toArray(function(_err, _result) {
+                        if (_err) throw _err;
+                        res.send(_result);
+                    });
+                });
+            }
+        })
+        .catch(function(err) {
+            console.log(err);
+            throw err;
         });
     });
 
