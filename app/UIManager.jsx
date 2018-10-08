@@ -20,7 +20,7 @@ class UIManager extends React.Component {
                 artist: '',
                 album: ''
             },
-            form_mode: 'CREATE',
+            form_mode: 'CREATE'
         }
     }
 
