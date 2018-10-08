@@ -27,11 +27,11 @@ exports.writeJSON = function(path, json_data, callback) {
     check if it exists first, before adding or deleting
     returns true or false
 */
-exports.checkIfItemExist = function(item, db_collection) {
+exports.checkIfItemExist = function(item_id, db_collection) {
     return find_db_item = new Promise(function(resolve, reject) {
-        db_collection.findOne({ id: item.id }, function(err, result) {
+        db_collection.findOne({ id: item_id }, function(err, result) {
             if (err) reject(err);
-             if (result && result.id === item.id) {
+             if (result && result.id === item_id) {
                 resolve(true);
             } else {
                 resolve(false);

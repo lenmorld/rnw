@@ -74,7 +74,7 @@ function runServer(db_collection) {
 
         // --- data validation ---
         // don't insert if exist already
-        utils.checkIfItemExist(item, db_collection).then(function(exists) {
+        utils.checkIfItemExist(item.id, db_collection).then(function(exists) {
             if (!exists) {
                 db_collection.insertOne(item, function(err, result) {
                     if (err) throw err;
