@@ -29,7 +29,7 @@ class Item extends React.Component {
                     </iframe>
                 </div>
                 <div className="right">
-                    <div className="title">{item.title}</div>
+                    <div className="title"><a href={`track/${item.id}`} target="_blank">{item.title}</a></div>
                     <div className="artist">{item.artist}</div>
                     <div className="album">{item.album}</div>
                 </div>
