@@ -20,7 +20,8 @@ class UIManager extends React.Component {
                 artist: '',
                 album: ''
             },
-            form_mode: 'CREATE'
+            form_mode: 'CREATE',
+            error: null,
         }
     }
 
@@ -54,12 +55,17 @@ class UIManager extends React.Component {
                     album: ''
                 }
             });
-        }).catch(function (error) {
+        }).catch(error => {
             // --- data validation ---
             // error goes here
             // debugger;
-            alert(error.response.data.message);
-            // TODO: this.state.errors, display in UIManager
+            
+            // alert(error.response.data.message);
+
+            // display error in UI, from UIManager state -> ItemForm
+            this.setState({
+                error: error.response.data.message
+            });
             
             // response.data.message
             console.log(error.response.data);
@@ -130,6 +136,12 @@ class UIManager extends React.Component {
         });
     }
 
+    clearErrors() {
+        this.setState({
+            error: null
+        });
+    }
+
     onChangeFormInput(event) {
         // console.log("input changed");
 
@@ -144,7 +156,8 @@ class UIManager extends React.Component {
                 title: current_list_fields.title,
                 artist: current_list_fields.artist,
                 album: current_list_fields.album
-            }
+            },
+            error: null         // reset error on new input
         });
     }
 
@@ -242,7 +255,9 @@ class UIManager extends React.Component {
                           onChangeFormInput={(event) => this.onChangeFormInput(event) } 
                           createItem={() => this.createItem()}
                           saveUpdatedItem={item => this.saveUpdatedItem(item)}
-                          mode={this.state.form_mode} />
+                          mode={this.state.form_mode}
+                          error={this.state.error}
+                          clearErrors={() => this.clearErrors()} />
                 <Spotify hideSpotify={this.hideSpotify} 
                          toggleItemFromSpotify={(item) => this.toggleItemFromSpotify(item)}
                          isInStateList={(item_id) => this.isInStateList(item_id)} />

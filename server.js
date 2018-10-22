@@ -156,7 +156,6 @@ function runServer(db_collection) {
         });
     });
 
-
     server.get("/json", function(req, res) {
         res.send(JSON.stringify({ name: "Lenny"}));
     });
