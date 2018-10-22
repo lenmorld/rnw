@@ -10,6 +10,16 @@ body {
     overflow: auto;
     margin: 0 auto;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  a:hover{
+    color: white;
+  }
   
   .circle {
     /* height: 25px; */
