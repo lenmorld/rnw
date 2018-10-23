@@ -11,6 +11,9 @@ var utils = require('./server/utils');
 var express = require('express');
 var server = express();
 
+// set the view engine to ejs
+server.set('view engine', 'ejs');
+
 var port = 4000;
 
 // --- db connection ---
@@ -60,6 +63,25 @@ function runServer(db_collection) {
     server.get("/", function(req, res) {
         res.sendFile(__dirname + '/index.html');
     });
+
+    // other pages
+    // track details page
+    server.get('/track/:id', function(req, res) {
+        var track_id = req.params.id;
+        console.log(`[SPOTIFY] : fetching track ${track_id}...`);
+        
+        spotify.fetch_track(track_id).then(function(track) {
+            console.log("==== TRACK ====");
+            // console.log(JSON.stringify(track, null, 4));
+
+            // render page using ejs, passing some data
+            res.render(__dirname + '/track.ejs', {
+                track_id: track_id,
+                track: JSON.stringify(track)
+            });
+        });
+    });
+
 
     // fetch all
     server.get("/list", function(req, res) {
