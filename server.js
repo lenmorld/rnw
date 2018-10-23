@@ -54,9 +54,15 @@ function runServer(db_collection) {
         var track_id = req.params.id;
         console.log(`[SPOTIFY] : fetching track ${track_id}...`);
         
-        // render page using ejs, passing some data
-        res.render(__dirname + '/track.ejs', {
-            track_id: track_id
+        spotify.fetch_track(track_id).then(function(track) {
+            console.log("==== TRACK ====");
+            // console.log(JSON.stringify(track, null, 4));
+
+            // render page using ejs, passing some data
+            res.render(__dirname + '/track.ejs', {
+                track_id: track_id,
+                track: JSON.stringify(track)
+            });
         });
     });
 
