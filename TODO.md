@@ -1,14 +1,15 @@
 ### some improvements for Chapter 8
 
-[.] Data Validation
--- [/] add existing
--- [/] remove non-existing
+[ ] Data Validation
+-- [x] add existing
+-- [x] remove non-existing
 -- [ ] others?
 
-[/] EJS Templates
--- [/] Spotify track page (track.ejs)
+[x] EJS Templates
+-- [x] Spotify track page (track.ejs)
 
 [ ] React-router
+-- [x] wrap app in a BrowserRouter (or HashRouter)
 
 [ ] Security (hard-coded credentials)
 
