@@ -1,7 +1,7 @@
 ### some improvements for Chapter 8
 
 * [ ] Data Validation
-- [x] add existing
+-- [x] add existing
 - [x] remove non-existing
 - [ ] others?
 
