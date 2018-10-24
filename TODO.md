@@ -1,9 +1,9 @@
 ### some improvements for Chapter 8
 
 * [ ] Data Validation
--- [x] add existing
-- [x] remove non-existing
-- [ ] others?
+- * [x] add existing
+- * [x] remove non-existing
+- * [ ] others?
 
 * [x] EJS Templates
 - [x] Spotify track page (track.ejs)
