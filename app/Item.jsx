@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 class Item extends React.Component {
     render() {
         var item = this.props.item;
@@ -29,7 +31,10 @@ class Item extends React.Component {
                     </iframe>
                 </div>
                 <div className="right">
-                    <div className="title">{item.title}</div>
+                    <div className="title">
+                        {/* <a href={`track/${item.id}`} target="_blank">{item.title}</a> */}
+                        <Link to='/track'>{item.title}</Link>
+                    </div>
                     <div className="artist">{item.artist}</div>
                     <div className="album">{item.album}</div>
                 </div>
