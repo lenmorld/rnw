@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import Header from './Header';
 import List from './List';
 import ItemForm from './ItemForm';
 import Spotify from './Spotify';
@@ -212,7 +211,6 @@ class UIManager extends React.Component {
 
         return(
             <div>
-                <Header />
                 <div className="options">
                     <input type="text" 
                            placeholder="Filter..." 

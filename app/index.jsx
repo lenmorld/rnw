@@ -4,12 +4,16 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import UIManager from './UIManager';
+import Header from './Header';
 
 class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <UIManager />
+                <div>
+                    <Header />
+                    <UIManager />
+                </div>
             </BrowserRouter>
         );
     }
