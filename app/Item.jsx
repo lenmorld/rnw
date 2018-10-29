@@ -33,7 +33,7 @@ class Item extends React.Component {
                 <div className="right">
                     <div className="title">
                         {/* <a href={`track/${item.id}`} target="_blank">{item.title}</a> */}
-                        <Link to='/track'>{item.title}</Link>
+                        <Link to={`/track/${item.id}`}>{item.title}</Link>
                     </div>
                     <div className="artist">{item.artist}</div>
                     <div className="album">{item.album}</div>

@@ -25,7 +25,7 @@ class App extends React.Component {
                     {/* match route to React component */}
                     <Route exact path="/" component={UIManager} />
                     <Route exact path="/artist" component={Artist} />
-                    <Route exact path="/track" component={Track} />
+                    <Route exact path="/track/:id" component={Track} />
                 </div>
             </BrowserRouter>
         );
