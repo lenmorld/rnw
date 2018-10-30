@@ -10,6 +10,9 @@
 
 * [ ] React-router
 - * [x] wrap app in a BrowserRouter (or HashRouter)
+- * [x] Link, Route
+- * [x] Track component
+- * [ ] History: prev, next; auto-reload given link
 
 * [ ] Security (hard-coded credentials)
 
