@@ -77,7 +77,7 @@ exports.spotify_routes = function(server, db_collection) {
         var track_id = req.params.id;
         console.log(`[SPOTIFY] : fetching track ${track_id}...`);
         getAccessToken().then(function(access_token) {
-            var _url = `https://api.spotify.com/v1/tracks/${track_id}`;
+            var _url = `https://api.spotify.com/v1/tracks/${track_id}?market=CA`;
     
             axios({
                 method: 'GET',

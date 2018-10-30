@@ -22,6 +22,13 @@ class Track extends React.Component {
             });
         });
     }
+
+    msToMinutesSeconds(ms){
+        let minutes = Math.floor(ms / 60000);
+        let seconds = Math.floor((ms % 60000)/1000);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
     
     render() {
 
@@ -29,8 +36,9 @@ class Track extends React.Component {
             return (<div>Loading...</div>);
         }
 
-        // console.log(this.state.track_data);
+        console.log(this.state.track_data);
         var track = this.state.track_data;
+        var image = track.album.images[0];
 
         return (
             <div>
@@ -40,13 +48,26 @@ class Track extends React.Component {
                     <li>Artist: {track.artists[0].name}</li>
                     <li>Album: {track.album.name}</li>
                     <li>Album track #: {track.track_number}</li>
-                    <li>Duration: {track.duration_ms}</li>
+                    <li>Duration: {this.msToMinutesSeconds(track.duration_ms)}</li>
                 </ul>
+
+                <img className="track_image" src={image.url} />  
+                <div className="player">
+                    {
+                        track.is_playable ?
+                            <audio controls="controls">
+                                <source src={track.preview_url} type="audio/mpeg"/>
+                            </audio>
+                            : <div>Not playable</div>
+                    }
+                </div>
+
                 <hr />
+                <h3>Album images</h3>
                 {
                     track.album.images.map((i, index) => 
                         (<img 
-                            class="track_image"
+                            className="track_image"
                             key={index}
                             src={i.url} />)
                     )
