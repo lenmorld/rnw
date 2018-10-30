@@ -22,6 +22,13 @@ class Track extends React.Component {
             });
         });
     }
+
+    msToMinutesSeconds(ms){
+        let minutes = Math.floor(ms / 60000);
+        let seconds = Math.floor((ms % 60000)/1000);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
     
     render() {
 
@@ -40,7 +47,7 @@ class Track extends React.Component {
                     <li>Artist: {track.artists[0].name}</li>
                     <li>Album: {track.album.name}</li>
                     <li>Album track #: {track.track_number}</li>
-                    <li>Duration: {track.duration_ms}</li>
+                    <li>Duration: {this.msToMinutesSeconds(track.duration_ms)}</li>
                 </ul>
                 <hr />
                 {
