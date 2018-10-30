@@ -72,10 +72,10 @@ exports.spotify_routes = function(server, db_collection) {
         // sample response for testing
         // res.send({ search: req.params.query });
     });
-}
 
-exports.fetch_track = function(track_id) {
-    return new Promise(function(resolve, reject) {
+    server.get('/spotify/track/:id', function(req, res) {
+        var track_id = req.params.id;
+        console.log(`[SPOTIFY] : fetching track ${track_id}...`);
         getAccessToken().then(function(access_token) {
             var _url = `https://api.spotify.com/v1/tracks/${track_id}`;
     
@@ -89,13 +89,10 @@ exports.fetch_track = function(track_id) {
             }).then(function(_res) {
                 // inspect response data
                 // console.log(`track: ${JSON.stringify(_res.data)}`);
-                // res.send(_res.data.tracks.items);
-                resolve(_res.data);
+                res.send(JSON.stringify(_res.data));
             }).catch(function(err) {
-                // throw err;
-                reject(err);
+                throw err;
             });
-            // res.send({ search: query_string, access_token: access_token });
         });
     });
 }
