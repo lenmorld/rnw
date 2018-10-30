@@ -14,7 +14,9 @@
 - * [x] Track component
 - * [ ] History: prev, next; auto-reload given link
 
-* [ ] Security (hard-coded credentials)
+* [ ] Security
+- * [x] .env for Spotify credentials
+- * [ ] .env for mLab credentials
 
 * [ ] Testing (Jest, Selenium/PhantomJS)
 
