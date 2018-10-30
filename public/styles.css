@@ -384,3 +384,17 @@ body {
     scrolling text when overflow: https://codepen.io/AndrewHyte/pen/DcExu
   
   */
+
+
+  .track_image {
+    width: 300px;
+  }
+
+
+  a {
+    color: green;
+  }
+  
+  a:hover {
+    color: white;
+  }
