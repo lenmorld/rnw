@@ -1,3 +1,8 @@
+// load secrets - must be first thing
+// so available in all Node modules
+var dotenv = require('dotenv')
+dotenv.config()
+
 // import built-in Node package
 var http = require('http');
 var path = require ('path');
@@ -13,7 +18,8 @@ var server = express();
 var port = 4000;
 
 // --- db connection ---
-var db_connection_url = 'mongodb://user1:pass4321@ds251622.mlab.com:51622/spot_db';
+// var db_connection_url = `mongodb://user1:pass4321@ds251622.mlab.com:51622/spot_db`;
+var db_connection_url = `mongodb://${process.env.MLAB_USER}:${process.env.MLAB_PASS}@${process.env.MLAB_URL}/spot_db`;
 // if local mongodb server
 // var db_connection_url = "mongodb://localhost:27017/";
 var db_name = "spot_db";
