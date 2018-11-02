@@ -1,10 +1,6 @@
 var axios = require('axios');
 var qs = require('qs');
 
-// load secrets
-var dotenv = require('dotenv')
-dotenv.config()
-
 // generated from Spotify Dev account Client ID, secret
 var base64_auth_string = process.env.SPOTIFY_API;
 var saved_access_token = null;
