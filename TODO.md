@@ -5,6 +5,11 @@
 - * [x] remove non-existing
 - * [ ] others?
 
+* [ ] more React
+- * [ ] refs - bind Enter key to search button in [+ from Spotify]
+- * [ ] lifecycle methods
+- * [ ] memoize
+
 * [x] EJS Templates
 - * [x] Spotify track page (track.ejs)
 
@@ -16,7 +21,7 @@
 
 * [ ] Security
 - * [x] .env for Spotify credentials
-- * [ ] .env for mLab credentials
+- * [x] .env for mLab credentials
 
 * [ ] Testing (Jest, Selenium/PhantomJS)
 
