@@ -11,6 +11,24 @@ class Spotify extends React.Component {
             search_term: '',
             search_results: []
         }
+
+        this.search_button_ref = React.createRef();
+    }
+
+    /**
+     * trivial example of refs
+     * we could have also bind keyUp of input directly to searchSpotify()
+     * 
+     * @param {*} event keyUp event, contains key code pressed
+     */
+    triggerSearchButton(event) {
+        event.preventDefault();
+
+        // ENTER = 13
+        if (event.keyCode === 13) {
+            // trigger click on ref'ed search button
+            this.search_button_ref.current.click();
+        }
     }
 
     trackSearchTerm(event) {
@@ -58,8 +76,13 @@ class Spotify extends React.Component {
                     </div>
                     <h3>search Spotify</h3>
                     <div className="spotify_input">
-                        <input type="text" onChange={ (event) => this.trackSearchTerm(event) }/>
-                        <button onClick={() => this.searchSpotify()}>Search</button>
+                        <input type="text" 
+                               onChange={ (event) => this.trackSearchTerm(event) }
+                               onKeyUp={ (event) => this.triggerSearchButton(event) } />
+                        <button onClick={() => this.searchSpotify()}
+                                ref={this.search_button_ref}>
+                            Search
+                        </button>
                     </div>
                     <List list={this.state.search_results}
                           display_type={"spotify_api"}
