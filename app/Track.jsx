@@ -16,11 +16,13 @@ class Track extends React.Component {
         // var track_id = this.props.location.id;
         var track_id = this.props.match.params.id;
 
-        axios.get(`/spotify/track/${track_id}`).then((response) => {
-            this.setState({
-                track_data: response.data
+        if (track_id) {
+            axios.get(`/spotify/track/${track_id}`).then((response) => {
+                this.setState({
+                    track_data: response.data
+                });
             });
-        });
+        }
     }
 
     msToMinutesSeconds(ms){
@@ -31,7 +33,9 @@ class Track extends React.Component {
 
     
     render() {
-
+        if (!this.props.match.params.id) {
+            return (<h1>No track id given</h1>);
+        }
         if (!this.state.track_data) {
             return (<div>Loading...</div>);
         }
