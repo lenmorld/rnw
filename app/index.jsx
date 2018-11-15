@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { HashRouter, Route, Link, Switch } from 'react-router-dom';
 
 import UIManager from './UIManager';
 import Header from './Header';
@@ -11,7 +11,7 @@ import Artist from './Artist';
 class App extends React.Component {
     render() {
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <div>
                     <Header />
 
@@ -29,7 +29,7 @@ class App extends React.Component {
                         <Route path="/track/:id?" component={Track} />
                     </Switch>
                 </div>
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }
