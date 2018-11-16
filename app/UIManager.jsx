@@ -200,15 +200,10 @@ class UIManager extends React.Component {
         // debugger;        
         var list = this.state.list;
         var search_term = this.state.search_term;
-        var filtered_list;
 
-        if (!search_term) {
-            filtered_list = list;
-        } else {
-            filtered_list = list.filter(function (item) {
-                return item.title.toLowerCase().includes(search_term.toLowerCase());
-            });
-        }
+        // OPTIMIZE: c8.7a, no need to filter list
+        //  we're passing entire list and letting Item decide if
+        // it should show or hide itself
 
         return(
             <div>
@@ -224,7 +219,8 @@ class UIManager extends React.Component {
                     <span className="add" onClick={() => this.onAddItem()}>[➕]</span>
                     <span className="add_spotify" onClick={this.showSpotify}>[➕ from Spotify]</span>
                 </div>
-                <List list={filtered_list} 
+                <List list={list}
+                      search_term={search_term}   
                       deleteItem={(item_id) => this.deleteItem(item_id) }
                       editItem={(item_id) => this.editItem(item_id) } />
                 <ItemForm item={this.state.form_fields}

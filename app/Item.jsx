@@ -4,9 +4,21 @@ class Item extends React.Component {
     render() {
         var item = this.props.item;
         // console.log("Item:", item);
+
+        // OPTIMIZE: c8.7a
+        // hide item if it doesnt match search_term
+        
+        var search_term = this.props.search_term;
+        var style = {
+            display: 'flex',
+        };
+
+        if (search_term && !item.title.toLowerCase().includes(search_term.toLowerCase())) {
+            style.display = 'none';
+        }
         
         return (
-            <div className="item">
+            <div className="item" style={style}>
                 {
                     this.props.display_type === "spotify_api" ?
                         (

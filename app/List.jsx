@@ -4,6 +4,7 @@ import Item from './Item';
 class List extends React.Component {
     render() {
         var list = this.props.list;
+        var search_term = this.props.search_term;
         // console.log(list);
 
         return(
@@ -13,6 +14,7 @@ class List extends React.Component {
                         return (
                             <Item
                                 item={item}
+                                search_term={search_term}
                                 key={item.id}
                                 deleteItem={this.props.deleteItem}
                                 editItem={this.props.editItem}
