@@ -1,31 +1,30 @@
 import React from 'react';
 import Item from './Item';
 
-class List extends React.Component {
-    render() {
-        var list = this.props.list;
-        // console.log(list);
+const List = (props) => {
+    // console.log("render list again!");
+    var list = props.list;
+    // console.log(list);
 
-        return(
-            <div className="items_grid">
-                {
-                    list.map((item) => {
-                        return (
-                            <Item
-                                item={item}
-                                key={item.id}
-                                deleteItem={this.props.deleteItem}
-                                editItem={this.props.editItem}
-                                display_type={this.props.display_type}
-                                toggleItem={this.props.toggleItem}
-                                isInStateList={this.props.isInStateList}
-                             />
-                        );
-                    })
-                }
-            </div>
-        );
-    }
+    return (
+        <div className="items_grid">
+            {
+                list.map((item) => {
+                    return (
+                        <Item
+                            item={item}
+                            key={item.id}
+                            deleteItem={props.deleteItem}
+                            editItem={props.editItem}
+                            display_type={props.display_type}
+                            toggleItem={props.toggleItem}
+                            isInStateList={props.isInStateList}
+                        />
+                    );
+                })
+            }
+        </div>
+    );
 }
 
 export default List;
