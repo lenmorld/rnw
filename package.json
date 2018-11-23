@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "dev": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,9 @@
   },
   "homepage": "https://github.com/lenmorld/rnw#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
@@ -27,8 +30,6 @@
     "babel-loader": "^8.0.2",
     "babel-preset-env": "^1.7.0",
     "css-loader": "^1.0.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.0"
