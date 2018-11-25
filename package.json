@@ -19,14 +19,10 @@
   },
   "homepage": "https://github.com/lenmorld/rnw#readme",
   "dependencies": {
-<<<<<<< HEAD
     "axios": "^0.18.0",
-    "express": "^4.16.3"
-=======
     "express": "^4.16.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
->>>>>>> c5.2
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
