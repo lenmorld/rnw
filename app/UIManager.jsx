@@ -23,7 +23,12 @@ class UIManager extends React.Component {
         }
     }
 
-    componentWillMount() {
+    /**
+     * React lifecycle method invoked
+     * after component is mounted
+     * perfect for network fetch requests
+     */
+    componentDidMount() {
         axios.get('/list').then((response) => {
             // debugger;
             this.setState({
