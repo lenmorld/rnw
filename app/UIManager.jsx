@@ -221,11 +221,7 @@ class UIManager extends React.Component {
                 <div className="options">
                     <input type="text" 
                            placeholder="Filter..." 
-                           onChange={ (event) => {
-                                        // debugger;
-                                        this.searchList(event);
-                                       } 
-                                    } />
+                           onChange={(event) => this.searchList(event)} />
                     <span className="add" onClick={() => this.onAddItem()}>[➕]</span>
                     <span className="add_spotify" onClick={this.showSpotify}>[➕ from Spotify]</span>
                 </div>
