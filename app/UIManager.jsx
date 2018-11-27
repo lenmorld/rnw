@@ -10,7 +10,6 @@ class UIManager extends React.Component {
 
     constructor() {
         super();
-        // debugger;
         this.state = {
             search_term: '',
             list: data.list
@@ -20,9 +19,8 @@ class UIManager extends React.Component {
     searchList(event) {
         var search_term = event.target.value;
         // console.log(search_term);
-
+        // debugger;
         console.log("current search term: ", this.state.search_term);
-
         this.setState({
             search_term: search_term
         });
