@@ -27,7 +27,7 @@ class UIManager extends React.Component {
                 <div className="options">
                     <input type="text" 
                            placeholder="Filter..." 
-                           onChange={ function(event){this.searchList(event)} } />
+                           onChange={this.searchList} />
                 </div>
                 <List list={this.state.list}/>
             </div>
