@@ -33,7 +33,7 @@ class UIManager extends React.Component {
                 <div className="options">
                     <input type="text" 
                            placeholder="Filter..." 
-                           onChange={this.searchList} />
+                           onChange={(event) => this.searchList(event)} />
                 </div>
                 <List list={this.state.list}/>
             </div>
