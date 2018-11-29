@@ -20,7 +20,7 @@ $ npm install
 $ npm start 
 
 # in a 2nd terminal
-$ webpack --watch
+$ npm run dev               # this invokes: webpack --watch
 ```
 
 
