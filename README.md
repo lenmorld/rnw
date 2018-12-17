@@ -1,16 +1,17 @@
-#### Music Hub
-##### We will be building this in the React + Node workshop
+# React + Node workshop
+
+### with MongoDB, mLab, SpotifyAPI
+
+### We will be building **MusicHub**
 
 It's a CRUD playlist inspired by Spotify. It uses Spotify's 30-second track embeds,
 as well as Spotify API for searching.
 
-stack: React + Node
 
 
 ### Preview:
 
 ![Music Hub preview](./screens/preview.gif)
-
 
 
 ### To try/dev:
