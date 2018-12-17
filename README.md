@@ -14,6 +14,11 @@ as well as Spotify API for searching.
 ![Music Hub preview](./screens/preview.gif)
 
 
+### To learn:
+Follow the slides workshop at https://github.com/lenmorld/rnw/raw/master/react_node_workshop_slides.pdf
+and join the Slack channel!
+
+
 ### To try/dev:
 ```
 # fork and clone the repo to your local
@@ -30,3 +35,9 @@ $ webpack --watch
 [<img src="./react_node_workshop_slides.png">](https://github.com/lenmorld/rnw/raw/master/react_node_workshop_slides.pdf)
 
 
+### Contributing
+
+This repo and the material is being continously developed. 
+To contribute, check out Issues or create a new one, 
+fork repo, and make a PR against this one.
+Thanks!
