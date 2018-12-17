@@ -15,14 +15,18 @@ as well as Spotify API for searching.
 
 
 ### To learn:
+
 Follow the slides workshop at https://github.com/lenmorld/rnw/raw/master/react_node_workshop_slides.pdf
 and join the Slack channel!
 
 
+
 ### Branching
 
-Workshop starts at branch */dev* at Chapter 1 and wraps up at Chapter 7, with
-finished workshop app at branch */workshop1*
+
+Workshop starts at branch */dev* at Chapter 1 and wraps up at Chapter 7, 
+with finished workshop app at branch */workshop1*
+
 Each chapter in the slides is also a branch, e.g. c4.5
 
 Latest updates to the app, most in current development, is at */master*
