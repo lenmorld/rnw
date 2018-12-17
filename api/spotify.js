@@ -61,7 +61,7 @@ exports.spotify_routes = function(server, db_collection) {
                 }
             }).then(function(_res) {
                 // inspect response data
-                // console.log(`search response: ${JSON.stringify(_res.data)}`);
+                console.log(`search response: ${JSON.stringify(_res.data.tracks.items)}`);
                 res.send(_res.data.tracks.items);
             }).catch(function(err) {
                 throw err;
@@ -71,5 +71,31 @@ exports.spotify_routes = function(server, db_collection) {
 
         // sample response for testing
         // res.send({ search: req.params.query });
+    });
+}
+
+exports.fetch_track = function(track_id) {
+    return new Promise(function(resolve, reject) {
+        getAccessToken().then(function(access_token) {
+            var _url = `https://api.spotify.com/v1/tracks/${track_id}`;
+    
+            axios({
+                method: 'GET',
+                url: _url,
+                headers: {
+                    "Authorization": `Bearer ${access_token}`,
+                    "Accept": "application/json"
+                }
+            }).then(function(_res) {
+                // inspect response data
+                // console.log(`track: ${JSON.stringify(_res.data)}`);
+                // res.send(_res.data.tracks.items);
+                resolve(_res.data);
+            }).catch(function(err) {
+                // throw err;
+                reject(err);
+            });
+            // res.send({ search: query_string, access_token: access_token });
+        });
     });
 }

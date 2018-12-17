@@ -5,9 +5,6 @@ class ItemForm extends React.Component {
     hideForm() {
         var modal = document.querySelector('.modal');
         modal.style.display = "none";
-
-        // clear errors on close
-        this.props.clearErrors();
     }
     
     onSubmitForm(event) {
@@ -31,10 +28,9 @@ class ItemForm extends React.Component {
 
         return (
             <div className="modal">
-                <h3 style={{ color: 'red', textAlign: 'center' }}>{this.props.error}</h3>
                 <form>
                     <div className="close_form">
-                        <span onClick={() => this.hideForm()}>[🗙]</span>
+                        <span onClick={this.hideForm}>[🗙]</span>
                     </div>
                     <h3>
                         {
