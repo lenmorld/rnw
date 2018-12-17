@@ -1,0 +1,17 @@
+<h1>Spotify Track Details</h1>
+<br/>
+
+Track ID: <%= track_id %>
+<br />
+Track Data full: <%= track %>
+<hr />
+Track Album: <%= JSON.parse(track)["album"]["name"] %>
+<br />
+Track Album Image: <img src='<%= JSON.parse(track)["album"]["images"][0]["url"] %>' height="100" width="100"> 
+<br />
+Track Duration: <%= (JSON.parse(track)["duration_ms"]/60000).toFixed(2) %>minutes
+<br />
+...
+<br />
+<h3>you can get anything from the parsed data, do some basic JS operations, and use it in HTML!</h3>
+<h3>Hooray for EJS templating!</h3>
